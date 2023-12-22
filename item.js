@@ -117,7 +117,7 @@ const boatItem= [
     price: 4999,
     originalprice: 9999,
     offer: 37,
-    img: 'images/Aavante_bar_rhythm.jpg',
+    img: 'images/Aavante_bar_Rhythm.jpg',
     hours: '60W Rms Sound',
     quantity: 1
 },
