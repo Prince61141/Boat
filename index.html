@@ -484,6 +484,14 @@
       .logo {
         margin-left: 100px;
       }
+      .dot {
+      height: 6px;
+      width: 6px;
+    }
+    .showdot {
+      gap: 8px;
+      bottom: -15px;
+    }
     }
   </style>
 </head>
@@ -846,31 +854,31 @@
     hamburgerBtn.addEventListener("click", toggleHamburger)
   </script>
 
-  <div class="slideshow-container">
+<div class="slideshow-container">
 
     <div class="mySlides fade">
       <picture>
-        <source media="(min-width: 769px)" alt="" srcset="./images/Desktop/slideshow_3.jpg" height="552" width="1360">
-        <img width="100%" class="image-overlay__image_" height="2291" alt="" src="./images/slideshow_3.jpg">
+        <source media="(max-width: 769px)" alt="" class="image-overlay__image_" height="2291" width="100%" srcset="./images/slideshow_3.jpg">
+        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_3.jpg">
       </picture>
     </div>
 
     <div class="mySlides fade">
       <picture>
-        <source media="(min-width: 769px)" alt="" srcset="./images/Desktop/slideshow_1.gif" height="552" width="1355">
-        <img width="100%" class="image-overlay__image_" height="2291" alt="" src="./images/slideshow_1.gif">
+        <source media="(max-width: 769px)" alt="" class="image-overlay__image_" height="2291" width="100%" srcset="./images/slideshow_1.gif" >
+        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_1.gif">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <source media="(min-width: 769px)" alt="" srcset="./images/Desktop/slideshow_2.jpg" height="552" width="1355">
-        <img width="100%" class="image-overlay__image_" height="2291" alt="" src="./images/slideshow_2.jpg">
+        <source media="(max-width: 769px)" alt="" srcset="./images/slideshow_2.jpg" class="image-overlay__image_" height="2291" width="100%">
+        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_2.jpg">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <source media="(min-width: 769px)" alt="" srcset="./images/Desktop/slideshow_4.jpg" height="552" width="1355">
-        <img width="100%" class="image-overlay__image_" height="2291" alt="" src="./images/slideshow_4.jpg">
+        <source media="(max-width: 769px)" alt="" srcset="./images/slideshow_4.jpg" class="image-overlay__image_" height="2291" width="100%">
+        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_4.jpg">
       </picture>
     </div>
 
@@ -902,6 +910,7 @@
       dots[slideIndex - 1].className += " active";
       setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
+    
   </script>
 
   <div class="heading" style="margin-left: 40px;">
@@ -1798,7 +1807,7 @@
   </div>
 
 
-  <footer>
+ <footer>
     <div class="footer-nav">
       <ul class="footer-nav-list " style="margin-left: 30px;">
         <div class="footer__item">
@@ -1891,7 +1900,115 @@
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Warranty Policy</a></li>
       </ul>
     </div>
+    <div class="footer-nav-moblie">
+        
 
+      <section class="nav-footer-moblie">
+        <div class="nav-list">
+          <div class="footer__item">
+            <div class="footer-logo">
+              <a href="https://www.boat-lifestyle.com" class="p-0">
+                <img class="footer-logo" loading="lazy" sizes="100px"
+                  src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo.svg" alt="logo">
+              </a>
+            </div>
+            <div class="signup-form">
+              <span class="signup-heading"
+                style="display: block;font-size: 24px;font-weight: bold;margin-bottom: 5px;opacity: 1;color:#293036;line-height: normal; margin-left: 10px;">Subscribe
+                to our email alerts!</span>
+  
+              <span class="input-block">
+                <input autocomplete="autocomplete" type="email" id="subscriber-email"
+                  placeholder="Enter your email address" class="required email">
+                <button class="button" id="subscribe-btn" type="submit">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8.27" height="14.473" viewBox="0 0 8.27 14.473">
+                      <path id="Path_340747" data-name="Path 340747"
+                        d="M.28.277a.961.961,0,0,1,1.349,0L7.991,6.569a.936.936,0,0,1,0,1.334L1.628,14.2a.961.961,0,0,1-1.349,0,.935.935,0,0,1,0-1.334L5.966,7.237.28,1.611A.935.935,0,0,1,.28.277Z"
+                        fill="#868c91" fill-rule="evenodd"></path>
+                    </svg></span>
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="nav-list-moblie">
+            <button class="nav-title">
+              Shop<i class="fal fa-plus"></i>
+            </button>
+            <div class="hidden-list">
+              <ul class="footer-nav-list">
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">True Wireless Earbuds</a>
+                </li>
+        
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Wireless Headphones</a>
+                </li>
+        
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Wired Headphones</a>
+                </li>
+        
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Wireless Speakers</a>
+                </li>
+        
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Home Audio</a>
+                </li>
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Mobile Accessories</a>
+                </li>
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Smart Watches</a>
+                </li>
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link" >TRebel</a>
+                </li>
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link">Misfit Trimmers</a>
+                </li>
+                <li class="footer-nav-item1">
+                  <a href="#" class="footer-nav-link" >Earn ₹100</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="nav-list-moblie">
+            <button class="nav-title">
+              Help<i class="fal fa-plus"></i>
+            </button>
+            <div class="hidden-list">
+              <ul class="footer-nav-list">
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Track Your Order</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Warranty & Support</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Return Policy</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Service Centers</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Bulk Orders</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">FAQs</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Why Buy Direct</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="nav-list-moblie">
+            <button class="nav-title">
+              Company<i class="fal fa-plus"></i>
+            </button>
+            <div class="hidden-list">
+              <ul class="footer-nav-list">
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">About boAt</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">News Read Our Blog</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Careers</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Security</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Investor Relations</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Social Responsibility</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">Warranty Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+      </section>
+    </div>
     <div class="footer-bottom">
       <div class="social">
         <p>Let's get social</p>
@@ -1953,6 +2070,7 @@
         Copyright &copy; 2023 <a href="#">Prince.</a> all rights reserved.
       </p>
     </div>
+
   </footer>
 
 </body>
