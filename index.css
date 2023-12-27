@@ -1061,7 +1061,10 @@ li.terms {
     text-align: center;
   }
   .footer-nav-mobile .footer-logo {
-    margin: 0 50%  0 50%;
+    margin: 0 50%  0 40%;
+}
+.footer-nav-moblie .signup-form .input-block #subscribe-btn{
+    float: none;
 }
 
 @media (min-width: 601px) {
