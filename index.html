@@ -22,7 +22,6 @@
     }
 
     :root {
-      --dark-grey: #333333;
       --medium-grey: #636363;
       --ash: #f4f4f4;
       --primary-color: #2b72fb;
@@ -34,7 +33,7 @@
     body {
       font-family: inherit;
       background-color: white;
-      color: var(--dark-grey);
+      color:  #333333;
       letter-spacing: -0.4px;
     }
 
@@ -55,7 +54,7 @@
     }
 
     .announcement-bar__list {
-      background-color: rgb(230, 240, 231);
+      background: #e7f0f5;
       padding: 10px 10px;
     }
 
@@ -182,16 +181,16 @@
     }
 
     .dropdown3 {
-      top: 20px;
+      top: 40px;
       position: absolute;
-      margin-left: -415px;
+      margin-left: -545px;
       margin-top: 28px;
       overflow: scroll;
       width: 600px;
       display: flex;
       flex-direction: column;
-      height: 630%;
-      max-height: 100vh;
+
+
       overflow-x: hidden;
     }
 
@@ -307,7 +306,6 @@
 
     /* Slideshow container */
     .slideshow-container img {
-      height: auto;
       max-width: 100%;
       border-style: none;
       vertical-align: top;
@@ -317,8 +315,8 @@
 
     /* The dots/bullets/indicators */
     .dot {
-      height: 8px;
-      width: 8px;
+      height: 10px;
+      width: 10px;
       background-color: #040000;
       border-radius: 50%;
       display: inline-block;
@@ -361,15 +359,31 @@
         opacity: 1
       }
     }
-
+    @media (min-width: 1100px) {
+      picture .image-mobile{
+        display: none;
+      }
+      .footer-nav{
+        display: flex;
+    }
+    .footer-nav-mobile{
+        display: none;
+    }
+    }
     @media (max-width: 1100px) {
+      .ui2.flash_sale{
+                      margin-top: -70px;
+                    }
+      .showdot{
+        bottom: 2%;
+      }
       #hamburger {
         display: block;
         margin-left: -5px;
       }
 
       .logo {
-        margin-left: 400px;
+        margin-left: 40px;
       }
 
       .container-header {
@@ -382,7 +396,7 @@
       .menu {
         display: none;
         position: absolute;
-        top: 51px;
+        top: 81px;
         left: 0;
         min-height: 100vh;
         width: 90%;
@@ -393,15 +407,21 @@
         border-right: none;
         border-bottom: var(--border);
       }
-
-      .dropdown3 {
-        top: 20px;
-        position: absolute;
-        margin-left: -401px;
-        margin-top: 28px;
-        width: 600px;
-        height: 630%;
-        max-height: 100vh;
+      .dropdown3{
+        top: 55px;
+    position: absolute;
+    margin-left: -665px;
+    overflow: scroll;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    height: 1000%;
+    max-height: 100vh;
+    overflow-x: hidden;
+      }
+      .dropdown3 .active{
+        transform: scale(1) translateX(-380px);
+        margin-top: 380px;
       }
 
       .dropdown {
@@ -452,6 +472,10 @@
         padding-bottom: 0.5rem;
         border-bottom: var(--border);
       }
+      .right-container {
+        display: inline-flex;
+        column-gap: 1.8rem;
+      }
 
       .text {
         font-size: 11px
@@ -460,13 +484,23 @@
       #desktop-menu-1 {
         margin-left: 150px;
       }
+      picture .image-desktop{
+        display: none;
+      }
+      .footer-nav{
+        display: none;
+    }
+    .footer-nav-mobile{
+        display: block;
+    }
     }
 
     @media (max-width: 600px) {
+      
       .right-container {
         display: inline-flex;
       }
-
+      
       .dropdown3 {
         top: 20px;
         position: absolute;
@@ -481,9 +515,6 @@
         width: 80%;
       }
 
-      .logo {
-        margin-left: 100px;
-      }
       .dot {
       height: 6px;
       width: 6px;
@@ -705,85 +736,96 @@
           <a href="/" id="user">
             <i class="fas fa-user"></i>
           </a>
-          <button class="nav-link dropdown-btn" data-dropdown="dropdown3">
+          <div class="dropdown-btn" data-dropdown="dropdown3">
             <div class="util">
               <i class="far fa-shopping-bag fa-lg"></i>
               <a id="cart-plus">0</a>
             </div>
-          </button>
-          <div id="dropdown3" class="dropdown dropdown3">
-            <div id="cart-page" class="cart-toggle">
-              <p id="cart-title">Your Cart</p>
-
-              <div id="table-body">
-
-              </div>
-              <div class="coupon">
-                <div class="apply-coupon">
-                  <i class="fas fa-badge-percent"></i>
-                  <h4>Apply Coupon</h4>
-                  <i class="bx bx-chevron-right" aria-hidden="true"></i>
+            <div id="dropdown3" class="dropdown3">
+              <div id="cart-page" class="cart-toggle">
+                <p id="cart-title">Your Cart</p>
+  
+                <div id="table-body">
                 </div>
-              </div>
-              <div class="gst">
-                <label class="check_container">
-                  <input type="checkbox">
-                  Get <b>GST</b> Invoice
-                  <img src="./images/info_icon.png" class="gst_info_icon">
-                </label>
-              </div>
-              <div class="off">
-                <b>₹15 off on All UPI Payments</b>
-                <div class="offer-img" style="padding: 0px 20px; display: flex; gap: 8px;">
-                  <img src="./images/paytm_icon.svg">
-                  <img src="./images/gpay_icon.svg">
-                  <img src="./images/phone_pe_icon.svg">
-                </div>
-                <div id="bill-total">
-                  <p id="total-item">Total Item : 5</p>
-                  <div class="amt" style="justify-content: space-between; display: flex;">
-                    <p>Cart Total:</p>
-                    <p id="m-total-amount"> </p>
-                  </div>
-                  <div class="shipping" style="justify-content: space-between; display: flex; margin-bottom: 2px;">
-                    <p>Shipping:</p>
-                    <p>FREE</p>
-                  </div>
-                  <div class="To-pay" style="justify-content: space-between; display: flex; border-top: 1px dashed;">
-                    <p>To Pay:</p>
-                    <p id="total-price"></p>
+                <div class="coupon">
+                  <div class="apply-coupon">
+                    <i class="fas fa-badge-percent"></i>
+                    <h4>Apply Coupon</h4>
+                    <i class="bx bx-chevron-right" aria-hidden="true"></i>
                   </div>
                 </div>
+                <div class="gst">
+                  <label class="check_container">
+                    <input type="checkbox">
+                    Get <b>GST</b> Invoice
+                    <img src="./images/info_icon.png" class="gst_info_icon">
+                  </label>
+                </div>
+                <div class="off">
+                  <b>₹15 off on All UPI Payments</b>
+                  <div class="offer-img" style="padding: 0px 20px; display: flex; gap: 8px;">
+                    <img src="./images/paytm_icon.svg">
+                    <img src="./images/gpay_icon.svg">
+                    <img src="./images/phone_pe_icon.svg">
+                  </div>
+                  <div id="bill-total">
+                    <p id="total-item">Total Item : 5</p>
+                    <div class="amt" style="justify-content: space-between; display: flex;">
+                      <p>Cart Total:</p>
+                      <p id="m-total-amount"> </p>
+                    </div>
+                    <div class="shipping" style="justify-content: space-between; display: flex; margin-bottom: 2px;">
+                      <p>Shipping:</p>
+                      <p>FREE</p>
+                    </div>
+                    <div class="To-pay" style="justify-content: space-between; display: flex; border-top: 1px dashed;">
+                      <p>To Pay:</p>
+                      <p id="total-price"></p>
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <div id="checkout" class="cart-toggle">
+                  <div id="payment-total-price"></div>
+                  <button id="bill"><i class="bx bx-chevron-down" aria-hidden="true"></i></button>
+  
+                  <p>Inclusive of all taxes</p>
+                  <button class="cart-btn">Confirm order</button>
+                </div>
+                <script>
+                  const bill = document.getElementById('bill');
+                  bill.addEventListener('click', () => {
+                    const total = document.getElementById('bill-total');
+  
+                    if (total.style.display === 'none') {
+                      total.style.display = 'block';
+                    }
+                    else {
+                      total.style.display = 'none';
+                    }
+                  });
+  
+                </script>
               </div>
-
-
-              <div id="checkout" class="cart-toggle">
-                <div id="payment-total-price"></div>
-                <button id="bill"><i class="bx bx-chevron-down" aria-hidden="true"></i></button>
-
-                <p>Inclusive of all taxes</p>
-                <button class="cart-btn">Confirm order</button>
-              </div>
-              <script>
-                const bill = document.getElementById('bill');
-                bill.addEventListener('click', () => {
-                  const total = document.getElementById('bill-total');
-
-                  if (total.style.display === 'none') {
-                    total.style.display = 'block';
-                  }
-                  else {
-                    total.style.display = 'none';
-                  }
-                });
-
-              </script>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+<script>
+    const dropdownBtn1 = document.querySelectorAll(".dropdown-btn1");
+    const dropdown1 = document.querySelectorAll(".dropdown1");
+    function setAriaExpandedFalse() {
+      dropdownBtn1.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
+    }
+    function closeDropdownMenu() {
+      dropdown1.forEach((drop) => {
+        drop.classList.remove("active");
+        drop.addEventListener("click", (e) => e.stopPropagation());
+      });
+    }
+</script>
   </header>
 
   <script>
@@ -858,27 +900,27 @@
 
     <div class="mySlides fade">
       <picture>
-        <source media="(max-width: 769px)" alt="" class="image-overlay__image_" height="2291" width="100%" srcset="./images/slideshow_3.jpg">
-        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_3.jpg">
+        <img source media="(max-width: 769px)" alt=""  height="2091" class="image-mobile"  width="100%" srcset="./images/slideshow_3.jpg">
+        <img width="100%" height="552" class="image-desktop" alt="" src="./images/Desktop/slideshow_3.jpg">
       </picture>
     </div>
 
     <div class="mySlides fade">
       <picture>
-        <source media="(max-width: 769px)" alt="" class="image-overlay__image_" height="2291" width="100%" srcset="./images/slideshow_1.gif" >
-        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_1.gif">
+        <img source media="(max-width: 769px)" alt="" class="image-mobile" height="2091" width="100%" srcset="./images/slideshow_1.gif" >
+        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_1.gif">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <source media="(max-width: 769px)" alt="" srcset="./images/slideshow_2.jpg" class="image-overlay__image_" height="2291" width="100%">
-        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_2.jpg">
+        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_2.jpg"  height="2091" width="100%">
+        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_2.jpg">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <source media="(max-width: 769px)" alt="" srcset="./images/slideshow_4.jpg" class="image-overlay__image_" height="2291" width="100%">
-        <img width="1355" height="552" alt="" src="./images/Desktop/slideshow_4.jpg">
+        <img source media="(max-width: 769px)" alt="" class="image-mobile"  srcset="./images/slideshow_4.jpg"  height="2091" width="100%">
+        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_4.jpg">
       </picture>
     </div>
 
@@ -889,7 +931,7 @@
       <span class="dot"></span>
     </div>
   </div>
-
+</div>
   <script>
     let slideIndex = 0;
     showSlides();
@@ -1199,6 +1241,7 @@
                   }
 
                   @media (max-width: 767px) {
+                    
                     .featured_collection_container .ui2.flash_sale p {
                       color: #000;
                       font-size: 12px;
@@ -1900,9 +1943,7 @@
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Warranty Policy</a></li>
       </ul>
     </div>
-    <div class="footer-nav-moblie">
-        
-
+    <div class="footer-nav-mobile">
       <section class="nav-footer-moblie">
         <div class="nav-list">
           <div class="footer__item">
@@ -1938,11 +1979,11 @@
             <div class="hidden-list">
               <ul class="footer-nav-list">
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link">True Wireless Earbuds</a>
+                  <a href="#" class="footer-nav-link" >True Wireless Earbuds</a>
                 </li>
         
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link">Wireless Headphones</a>
+                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Wireless Headphones</a>
                 </li>
         
                 <li class="footer-nav-item1">
@@ -1950,26 +1991,26 @@
                 </li>
         
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link">Wireless Speakers</a>
+                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Wireless Speakers</a>
                 </li>
         
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Home Audio</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link">Mobile Accessories</a>
+                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Mobile Accessories</a>
                 </li>
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Smart Watches</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" >TRebel</a>
+                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">TRebel</a>
                 </li>
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Misfit Trimmers</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" >Earn ₹100</a>
+                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Earn ₹100</a>
                 </li>
               </ul>
             </div>
