@@ -1766,14 +1766,62 @@
           </b>
         </div>
 
-        <div id="soundbars" class="d-soundbars">
+        <div>
+          <button id="soundbar">Soundbars</button>
+          <button id="watche">Top Watches</button>
+          <button id="accessorie">Accessories</button>
+        </div>
+        <div id="soundbars" class="d-soundbars" style="display: flex;">
         </div>
 
-        <div id="top-watches" class="d-top-watches">
+        <div id="top-watches" class="d-top-watches" style="display: none;">
         </div>
 
-        <div id="accessories" class="d-accessories">
+        <div id="accessories" class="d-accessories" style="display: none;">
         </div>
+        <script>
+          const soundbar = document.getElementById('soundbar');
+          const watche = document.getElementById('watche');
+          const accessorie = document.getElementById('accessorie');
+  
+  
+          soundbar.addEventListener('click', () => {
+            const soundbars = document.getElementById('soundbars');
+            const topwatches = document.getElementById('top-watches');
+            const accessories = document.getElementById('accessories');
+  
+            if (soundbars.style.display === 'none') {
+              soundbars.style.display = 'flex';
+              topwatches.style.display = 'none';
+              accessories.style.display = 'none';
+            }
+  
+          });
+          watche.addEventListener('click', () => {
+            const soundbars = document.getElementById('soundbars');
+            const topwatches = document.getElementById('top-watches');
+            const accessories = document.getElementById('accessories');
+  
+            if (topwatches.style.display === 'none') {
+              soundbars.style.display = 'none';
+              topwatches.style.display = 'flex';
+              accessories.style.display = 'none';
+            }
+  
+          });
+          accessorie.addEventListener('click', () => {
+            const soundbars = document.getElementById('soundbars');
+            const topwatches = document.getElementById('top-watches');
+            const accessories = document.getElementById('accessories');
+  
+            if (accessories.style.display === 'none') {
+              soundbars.style.display = 'none';
+              topwatches.style.display = 'none';
+              accessories.style.display = 'flex';
+            }
+  
+          });
+        </script>
 
       </div>
 
