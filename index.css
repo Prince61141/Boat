@@ -46,6 +46,7 @@
 
 html {
     height: 100%;
+    width: 100%;
 }
 
 body {
@@ -53,6 +54,8 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Metropolis;
+    letter-spacing: -0.4px;
+
 }
 
 .container {
@@ -115,16 +118,14 @@ body {
     margin: 10px;
 }
 
-#soundbars,
-#top-watches{
-    display: none;
-}
 #category-name,
 .item-menu {
     font-family: Metropolis !important;
 }
 
-#soundbar , #watche, #accessorie {
+#soundbar,
+#watche,
+#accessorie {
     background-color: #f1efef;
     padding: 10px 20px;
     margin: 5px;
@@ -258,6 +259,7 @@ body {
     background: white;
     margin: 10px;
     font-family: Metropolis !important;
+    height: 90%;
 }
 
 #cart-page .bx {
@@ -551,6 +553,158 @@ body {
     margin-top: 10px;
 }
 
+.heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+}
+
+.h2-heading {
+    color: #0b0b0b;
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: Metropolis !important;
+    font-weight: 545;
+    letter-spacing: 1.5px;
+}
+
+.h2-heading1 {
+    color: #0b0b0b;
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: Metropolis !important;
+    font-weight: 545;
+    letter-spacing: 1.5px;
+}
+
+p.h2-heading span {
+
+    letter-spacing: normal;
+    font-weight: bolder;
+}
+
+p.h2-heading1 span {
+
+    letter-spacing: normal;
+    font-weight: bolder;
+}
+
+p.h2-heading span::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #ec2020;
+    bottom: 0.5px;
+    right: 0;
+    margin-left: 90%;
+    margin-top: -3px;
+}
+
+p.h2-heading1 span::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #ec2020;
+    bottom: 0.5px;
+    right: 0;
+    margin-left: 86%;
+    margin-top: -3px;
+}
+
+.flashtimer .timer--expired {
+    display: none;
+}
+
+.flashtimer .timer-display {
+    display: flexbox;
+    display: flex;
+}
+
+.flashtimer .timer-block {
+    position: relative;
+    font-size: 16px;
+}
+
+.flashtimer .timer-block__num,
+.flashtimer .timer-block__unit {
+    display: block;
+}
+
+.ui2.flash_sale {
+    margin-left: 450px;
+    position: absolute;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+span.timer-block__text {
+    position: relative;
+    font-size: 8px;
+    top: -6px;
+}
+
+.ui2.flashtimer .timer-block,
+.two-pt-o .flashtimer .timer__title {
+    color: white;
+}
+
+.ui2.flashtimer {
+    line-height: normal;
+    display: block;
+    position: relative;
+}
+
+.ui2.flashtimer::before {
+    content: "";
+    display: block;
+    width: 10px;
+    background: #4e5358;
+    position: absolute;
+    bottom: 4px;
+    left: -0.3rem;
+}
+
+.ui2.flashtimer .timer__title {
+    margin-right: 30px;
+    font-size: 21px;
+    font-weight: 500;
+    top: 10px;
+}
+
+.ui2.flashtimer .timer-block__num {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ui2.flashtimer .timer-block {
+    width: 48px;
+}
+
+.ui2.flashtimer .timer-block__num::before {
+    content: ":";
+    display: block;
+    position: absolute;
+    right: 1.5rem;
+    font-weight: 400;
+}
+
+.ui2.flashtimer .days-timer.visually-hidden+.timer-block .js-timer-hours::before {
+    content: none !important;
+}
+
+.view-all {
+    color: #2F5B96;
+    font-size: 14px;
+    border-radius: 20px;
+    margin-top: 25px;
+}
 
 .collection-row {
     padding-left: var(--container-gutter);
@@ -843,6 +997,8 @@ span.collection_title {
 
 /* #FOOTER */
 
+/* #FOOTER */
+
 footer {
     background: #e7f0f5;
     padding: 30px 0;
@@ -1022,12 +1178,13 @@ li.terms {
 .copyright a {
     display: inline;
 }
+
 .nav-list-moblie {
     justify-content: center;
     padding: 0.5% 2%;
-  }
-  
-  .nav-title {
+}
+
+.nav-title {
     width: 100%;
     display: flex;
     text-align: left;
@@ -1037,56 +1194,191 @@ li.terms {
     border: none;
     color: black;
     cursor: pointer;
-  }
-  
-  .hidden-list {
+}
+
+.hidden-list {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
     color: black;
     margin-left: 10px;
-  }
-  
-  .nav-list {
+}
+
+.nav-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-  }
-  .footer-nav-mobile .signup-form .input-block{
-    width: 70%;
-    margin: 2% 15% 0;
-  }
-  .footer-nav-mobile .footer__item{
-    text-align: center;
-  }
-  .footer-nav-mobile .footer-logo {
-    margin: 0 50%  0 40%;
 }
-.footer-nav-moblie .signup-form .input-block #subscribe-btn{
-    float: none;
+
+.footer-nav-mobile .signup-form .input-block {
+    width: 80%;
+    margin: 2% 15% 0;
+}
+
+.footer-nav-mobile .footer__item {
+    text-align: center;
 }
 
 @media (min-width: 601px) {
+
     /**
-   * #FOOTEr
+   * #FOOTER
    */
-   .footer-nav-list {
-    min-width: calc(20% - 26px);
-    width: calc(20% - 26px);
-    margin-left: 10px;
-}
-    
+    .ui2.flash_sale {
+        margin-top: -70px;
+    }
+
+    .footer-nav-list {
+        min-width: calc(20% - 26px);
+        width: calc(20% - 26px);
+        margin-left: 10px;
+    }
+
     .copyright {
         --fs-8: 0.875rem;
     }
 }
 
+@media(min-width: 992px) {
+    .ui2.flashtimer::before {
+        content: none
+    }
+
+    .ui2.flashtimer {
+        line-height: unset;
+        display: flex;
+        margin-left: 3rem;
+        align-items: center;
+    }
+
+    .ui2.flashtimer .timer__title {
+        font-size: 21px !important;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        width: max-content;
+    }
+
+    .ui2.flashtimer .timer-block__num {
+        display: inline-flex;
+        font-size: 45px;
+    }
+
+    .ui2.flashtimer .timer-block {
+        width: 170px !important;
+    }
+
+    span.timer-block__text {
+        font-size: 21px;
+        font-weight: 500;
+    }
+
+
+
+    .ui2.flashtimer .timer-block__num::before {
+        opacity: 0.4
+    }
+
+    .featured_collection_container .ui2.flash_sale p {
+        color: #000;
+        font-size: 31px;
+        width: auto;
+    }
+
+    .featured_collection_container .ui2.flashtimer {
+        margin-left: 0px;
+        width: auto;
+    }
+
+    .featured_collection_container .ui2.flashtimer .timer__title {
+        color: #000;
+        font-size: 21px !important;
+    }
+
+    .featured_collection_container .ui2.flashtimer .timer-block {
+        color: #000;
+        width: 148px !important;
+        line-height: normal;
+    }
+
+    .featured_collection_container .ui2.flash_sale {
+        padding-left: 10px;
+        display: flex;
+        justify-content: space-around;
+        gap: 1.8rem;
+        align-items: center;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 87%;
+    }
+
+    .featured_collection_container .flash_sale.ui2 p br {
+        display: none;
+    }
+
+    .featured_collection_container header a::after {
+        content: '';
+        width: 0.5px;
+        height: 80px;
+        left: 43.5%;
+        background: #000;
+        transform: translate(-44%, -46%);
+        position: absolute;
+        top: 50%;
+    }
+}
+
 @media (max-width: 600px) {
-    
+
     .item-container {
         overflow-y: scroll;
     }
+
+    #cart-page #table-body {
+        height: 70%;
+        max-height: 50vh;
+    }
+
+    .ui2.flash_sale {
+        margin-top: -80px;
+        margin-left: 120px;
+        text-align: center;
+    }
+
+    .ui2.flashtimer .timer__title {
+        font-size: 8px;
+        margin-right: 0px;
+    }
+
+    .ui2.flashtimer .timer-block {
+        width: 40px;
+    }
+
+    .ui2.flashtimer .timer-block__num::before {
+        right: 0rem;
+    }
+
+    .ui2.flashtimer .timer-block__num {
+        font-size: 16px;
+    }
+
+    .ui2.flashtimer .num1::before {
+        display: none;
+    }
+
+    .featured_collection_container .ui2.flashtimer::before {
+        height: 90%;
+        left: -0.4rem;
+    }
+
+    .collection-row {
+        padding: 0;
+    }
+
+    .img_container img {
+        width: 72px;
+    }
+
     .category_slider {
         gap: 10px;
         padding: 0 12px 0 8px;
@@ -1112,6 +1404,7 @@ li.terms {
         width: 52px;
         height: 52px;
     }
+
     #logo {
         width: 90px;
         height: 70px;
@@ -1122,35 +1415,9 @@ li.terms {
         position: relative;
     }
 
-    .list-card {
-        margin: 0 10px;
-        text-align: center;
-    }
-
-    .list-card img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-    }
-
-    .list-card:hover {
-        background: none;
-    }
-
-    .list-card:hover img {
-        transform: none;
-        transition: none;
-    }
-
-    .list-name {
-        margin: 5px 0;
-        color: coral;
-        width: max-content;
-        font-size: 16px;
-    }
-
     #Boat-items {
         padding: 5px 10px;
+        margin: 10px;
     }
 
     #category-name {
@@ -1159,78 +1426,33 @@ li.terms {
         display: none;
     }
 
-    #item-card {
-        width: 150px;
-        height: 200px;
-    }
-
-    #item-card img {
-        width: 100px;
-        height: 100px;
-    }
-
     #item-name,
     #item-price {
         font-size: 16px;
     }
 
-    .list-card {
-        flex-direction: column;
-    }
-
-    #cart-page {
-        margin-top: 0px;
-        margin: 3px 0;
-        padding: 10px 5px;
-        padding-bottom: 30px;
-        border-top: 1px solid rgb(219, 219, 219);
-    }
-
-    #cart-page table thead td {
-        font-size: 20px;
-    }
-
-    #cart-page table tbody td {
-        font-size: 18px;
-    }
-
-    #cart-page table tbody img {
-        width: 60px;
-        height: 60px;
-    }
-
-    #cart-title {
-        font-size: 25px;
-        display: inline-block;
-        font-family: 'Aclonica', sans-serif;
-    }
-
-    .cart-btn {
-        font-size: 14px;
-        background: lightcoral;
-        padding: 8px 15px;
-        margin: auto;
-    }
     .section-p1 {
         padding: 20px 20px;
     }
-    
-    .footer-bottom .social{
+
+    #feature {
+        gap: 20px;
+    }
+
+    .feature-box p {
+        letter-spacing: 0.30px;
+        font-size: 12px;
+    }
+
+    #feature .feature-box img {
+        width: 65px;
+    }
+
+    .footer-bottom .social {
         margin-top: 10px;
-        margin-bottom: 10px;
     }
 
-}
-
-
-
-@media screen and (max-width : 400px) and (-webkit-min-device-pixel-ratio: 2) {
-    #item-card {
-        height: 200px;
-        width: 140px;
-    }
-
-    #Boat-items {
-        padding: 0;
+    .footer-bottom .social-media_item {
+        margin-right: 20px;
     }
 }
