@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat-lifestyle</title>
   <link rel="stylesheet" href="./index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,12 +30,6 @@
         rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     }
 
-    body {
-      font-family: inherit;
-      background-color: white;
-      color:  #333333;
-      letter-spacing: -0.4px;
-    }
 
     ul {
       list-style: none;
@@ -151,7 +145,7 @@
       letter-spacing: 0.6px;
       padding: 0.3rem;
       min-width: 60px;
-      margin-right: 48px;
+      margin-right: 40px;
       font-family: "Metropolis", sans-serif;
     }
 
@@ -183,14 +177,14 @@
     .dropdown3 {
       top: 40px;
       position: absolute;
-      margin-left: -545px;
+      margin-left: -495px;
       margin-top: 28px;
       overflow: scroll;
       width: 600px;
       display: flex;
       flex-direction: column;
-
-
+      height: 630%;
+      min-height: 50vh;
       overflow-x: hidden;
     }
 
@@ -359,24 +353,28 @@
         opacity: 1
       }
     }
+
     @media (min-width: 1100px) {
-      picture .image-mobile{
+      picture .image-mobile {
         display: none;
       }
-      .footer-nav{
+
+      .footer-nav {
         display: flex;
-    }
-    .footer-nav-mobile{
+      }
+
+      .footer-nav-mobile {
         display: none;
+      }
     }
-    }
+
     @media (max-width: 1100px) {
-      .ui2.flash_sale{
-                      margin-top: -70px;
-                    }
-      .showdot{
+
+
+      .showdot {
         bottom: 2%;
       }
+
       #hamburger {
         display: block;
         margin-left: -5px;
@@ -407,19 +405,21 @@
         border-right: none;
         border-bottom: var(--border);
       }
-      .dropdown3{
+
+      .dropdown3 {
         top: 55px;
-    position: absolute;
-    margin-left: -665px;
-    overflow: scroll;
-    width: 700px;
-    display: flex;
-    flex-direction: column;
-    height: 1000%;
-    max-height: 100vh;
-    overflow-x: hidden;
+        position: absolute;
+        margin-left: -665px;
+        overflow: scroll;
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        height: 1000%;
+        max-height: 100vh;
+        overflow-x: hidden;
       }
-      .dropdown3 .active{
+
+      .dropdown3 .active {
         transform: scale(1) translateX(-380px);
         margin-top: 380px;
       }
@@ -436,6 +436,8 @@
         opacity: 1;
         transform: none;
         box-shadow: none;
+        margin-right: 0px;
+        margin-left: 45px;
       }
 
       .menu.show,
@@ -472,6 +474,7 @@
         padding-bottom: 0.5rem;
         border-bottom: var(--border);
       }
+
       .right-container {
         display: inline-flex;
         column-gap: 1.8rem;
@@ -484,45 +487,62 @@
       #desktop-menu-1 {
         margin-left: 150px;
       }
-      picture .image-desktop{
+
+      picture .image-desktop {
         display: none;
       }
-      .footer-nav{
+
+      .footer-nav {
         display: none;
-    }
-    .footer-nav-mobile{
+      }
+
+      .footer-nav-mobile {
         display: block;
-    }
+      }
     }
 
     @media (max-width: 600px) {
-      
-      .right-container {
-        display: inline-flex;
-      }
-      
+
       .dropdown3 {
-        top: 20px;
-        position: absolute;
-        margin-left: -401px;
-        margin-top: 28px;
-        width: 600px;
-        height: 630%;
+        top: 55px;
+        left: 34px;
+        width: 390px;
+        height: 1050%;
         max-height: 100vh;
       }
 
+      .right-container .dropdown {
+        min-width: 0%;
+        position: absolute;
+      }
+
+      .dropdown ul {
+        gap: 0.2rem;
+      }
+
+      #desktop-menu-1 {
+        margin-left: 120px;
+      }
+
+      #desktop-menu-1 .nav-dropdown__item {
+        width: 30vw;
+        margin-left: 5px;
+      }
+
       .menu-bar li:first-child .dropdown {
-        width: 80%;
+        width: 130%;
+        margin-left: -80px
       }
 
       .dot {
-      height: 6px;
-      width: 6px;
-    }
-    .showdot {
-      gap: 8px;
-      bottom: -15px;
-    }
+        height: 8px;
+        width: 8px;
+      }
+
+      .showdot {
+        gap: 10px;
+        bottom: 170px;
+      }
     }
   </style>
 </head>
@@ -568,7 +588,8 @@
                     </li>
                     <li class="nav-dropdown__item">
                       <a class="nav-dropdown__link" href="/collections/product-personalization">
-                        <img sizes="100px" height="50" width="50" alt="Personalized Products" src="./images/">
+                        <img sizes="100px" height="50" width="50" alt="Personalized Products"
+                          src="./images/Nirvana-ION-Black.jpg">
                         <p>Personalized Products</p>
                       </a>
                     </li>
@@ -741,10 +762,10 @@
               <i class="far fa-shopping-bag fa-lg"></i>
               <a id="cart-plus">0</a>
             </div>
-            <div id="dropdown3" class="dropdown3">
+            <div id="dropdown3" class="dropdown dropdown3">
               <div id="cart-page" class="cart-toggle">
                 <p id="cart-title">Your Cart</p>
-  
+
                 <div id="table-body">
                 </div>
                 <div class="coupon">
@@ -784,20 +805,21 @@
                     </div>
                   </div>
                 </div>
-  
-  
+
+
                 <div id="checkout" class="cart-toggle">
                   <div id="payment-total-price"></div>
                   <button id="bill"><i class="bx bx-chevron-down" aria-hidden="true"></i></button>
-  
+
                   <p>Inclusive of all taxes</p>
                   <button class="cart-btn">Confirm order</button>
                 </div>
+
                 <script>
                   const bill = document.getElementById('bill');
                   bill.addEventListener('click', () => {
                     const total = document.getElementById('bill-total');
-  
+
                     if (total.style.display === 'none') {
                       total.style.display = 'block';
                     }
@@ -805,7 +827,7 @@
                       total.style.display = 'none';
                     }
                   });
-  
+
                 </script>
               </div>
             </div>
@@ -813,19 +835,6 @@
         </div>
       </div>
     </div>
-<script>
-    const dropdownBtn1 = document.querySelectorAll(".dropdown-btn1");
-    const dropdown1 = document.querySelectorAll(".dropdown1");
-    function setAriaExpandedFalse() {
-      dropdownBtn1.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
-    }
-    function closeDropdownMenu() {
-      dropdown1.forEach((drop) => {
-        drop.classList.remove("active");
-        drop.addEventListener("click", (e) => e.stopPropagation());
-      });
-    }
-</script>
   </header>
 
   <script>
@@ -896,30 +905,34 @@
     hamburgerBtn.addEventListener("click", toggleHamburger)
   </script>
 
-<div class="slideshow-container">
+  <div class="slideshow-container">
 
     <div class="mySlides fade">
       <picture>
-        <img source media="(max-width: 769px)" alt=""  height="1391" class="image-mobile"  width="100%" srcset="./images/slideshow_3.jpg">
+        <img source media="(max-width: 769px)" alt="" height="640" class="image-mobile" width="100%"
+          srcset="./images/slideshow_3.jpg">
         <img width="100%" height="552" class="image-desktop" alt="" src="./images/Desktop/slideshow_3.jpg">
       </picture>
     </div>
 
     <div class="mySlides fade">
       <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile" height="1391" width="100%" srcset="./images/slideshow_1.gif" >
+        <img source media="(max-width: 769px)" alt="" class="image-mobile" height="640" width="100%"
+          srcset="./images/slideshow_1.gif">
         <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_1.gif">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_2.jpg"  height="1391" width="100%">
+        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_2.jpg"
+          height="640" width="100%">
         <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_2.jpg">
       </picture>
     </div>
     <div class="mySlides fade">
       <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile"  srcset="./images/slideshow_4.jpg"  height="1391" width="100%">
+        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_4.jpg"
+          height="640" width="100%">
         <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_4.jpg">
       </picture>
     </div>
@@ -931,7 +944,7 @@
       <span class="dot"></span>
     </div>
   </div>
-</div>
+  </div>
   <script>
     let slideIndex = 0;
     showSlides();
@@ -952,7 +965,7 @@
       dots[slideIndex - 1].className += " active";
       setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
-    
+
   </script>
 
   <div class="heading" style="margin-left: 40px;">
@@ -1039,335 +1052,55 @@
             <picture>
               <source media="(min-width: 769px)" height="100%" width="100%" alt=""
                 srcset="//www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_700x.png?v=1701415389 700w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_800x.png?v=1701415389 800w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_900x.png?v=1701415389 900w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_1000x.png?v=1701415389 1000w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_1200x.png?v=1701415389 1200w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_1400x.png?v=1701415389 1400w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Web_copy_1_1600x.png?v=1701415389 1600w">
-              <img alt="flash_timer" style="border-radius:10px" width="95%" height="404"
+              <img alt="flash_timer" style="border-radius:10px" width="100%" height="104"
                 src="//www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_600x.png?v=1701415478"
                 srcset="//www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_200x.png?v=1701415478 200w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_300x.png?v=1701415478 300w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_400x.png?v=1701415478 400w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_500x.png?v=1701415478 500w, //www.boat-lifestyle.com/cdn/shop/files/Strip_Mobile_copy_1_600x.png?v=1701415478 600w">
-              <div class="flash_sale ui2">
-                <div class="flashtimer ui2">
-                  <h4 class="timer__title m-0">Ending In</h4>
-                  <div class="timer-display">
-                    <div class="timer-block">
-                      <span class="timer-block__num js-timer-hours">24</span>
-                      <span class="timer-block__text">Hours</span>
-                    </div>
-                    <div class="timer-block">
-                      <span class="timer-block__num js-timer-minutes">00</span>
-                      <span class="timer-block__text">Mins</span>
-                    </div>
-                    <div class="timer-block">
-                      <span class="timer-block__num js-timer-seconds">00</span>
-                      <span class="timer-block__text">Sec</span>
-                    </div>
-
-                  </div>
-                </div>
-
-                <script type="text/javascript">
-                  var second = 1000,
-                    minute = second * 60,
-                    hour = minute * 60,
-                    _day = hour * 24;
-
-                  var hr = 23;
-                  var min = 59;
-                  var sec = 60;
-                  var distance = 1;
-                  x = setInterval(function () {
-                    var curr = new Date();
-                    // document.querySelector('.flashtimer .js-timer-days').innerText = Math.floor(distance / (_day)) + 'd',
-                    document.querySelector('.flashtimer .js-timer-hours').innerText = pad2(hr - curr.getHours()),
-                      document.querySelector('.flashtimer .js-timer-minutes').innerText = pad2(min - curr.getMinutes()),
-                      document.querySelector('.flashtimer .js-timer-seconds').innerText = pad2(sec - curr.getSeconds());
-                  }, second);
-
-
-
-                  function pad2(number) {
-                    return (number < 10 ? '0' : '') + number
-                  }
-                </script>
-                <style>
-                  .heading {
-                    display: flex;
-                    justify-content: space-between;
-                    margin: 8px;
-                  }
-
-                  .h2-heading {
-                    color: #0b0b0b;
-                    font-size: 24px;
-                    text-align: left;
-                    margin-bottom: 10px;
-                    margin-top: 20px;
-                    font-family: Metropolis !important;
-                    font-weight: 545;
-                    letter-spacing: 1.5px;
-                  }
-
-                  .h2-heading1 {
-                    color: #0b0b0b;
-                    font-size: 24px;
-                    text-align: left;
-                    margin-bottom: 10px;
-                    margin-top: 20px;
-                    font-family: Metropolis !important;
-                    font-weight: 545;
-                    letter-spacing: 1.5px;
-                  }
-
-                  p.h2-heading span {
-
-                    letter-spacing: normal;
-                    font-weight: bolder;
-                  }
-
-                  p.h2-heading1 span {
-
-                    letter-spacing: normal;
-                    font-weight: bolder;
-                  }
-
-                  p.h2-heading span::after {
-                    content: "";
-                    display: block;
-                    width: 24px;
-                    height: 2px;
-                    background: #ec2020;
-                    bottom: 0.5px;
-                    right: 0;
-                    margin-left: 90%;
-                    margin-top: -3px;
-                  }
-
-                  p.h2-heading1 span::after {
-                    content: "";
-                    display: block;
-                    width: 24px;
-                    height: 2px;
-                    background: #ec2020;
-                    bottom: 0.5px;
-                    right: 0;
-                    margin-left: 86%;
-                    margin-top: -3px;
-                  }
-
-                  .flashtimer .timer--expired {
-                    display: none;
-                  }
-
-                  .flashtimer .timer-display {
-                    display: flexbox;
-                    display: flex;
-                  }
-
-                  .flashtimer .timer-block {
-                    position: relative;
-                    font-size: 16px;
-                  }
-
-                  .flashtimer .timer-block__num,
-                  .flashtimer .timer-block__unit {
-                    display: block;
-                  }
-
-                  .ui2.flash_sale {
-                    margin-left: 450px;
-                    position: absolute;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                  }
-
-                  span.timer-block__text {
-                    position: relative;
-                    font-size: 8px;
-                    top: -6px;
-                  }
-
-                  .ui2.flashtimer .timer-block,
-                  .two-pt-o .flashtimer .timer__title {
-                    color: white;
-                  }
-
-                  .ui2.flashtimer {
-                    line-height: normal;
-                    display: block;
-                    position: relative;
-                  }
-
-                  .ui2.flashtimer::before {
-                    content: "";
-                    display: block;
-                    width: 1px;
-                    background: #4e5358;
-                    position: absolute;
-                    bottom: 4px;
-                    left: -0.3rem;
-                  }
-
-                  .ui2.flashtimer .timer__title {
-                    margin-right: 30px;
-                    font-size: 21px;
-                    font-weight: 500;
-                    top: 10px;
-                  }
-
-                  .ui2.flashtimer .timer-block__num {
-                    font-size: 20px;
-                    font-weight: 600;
-                  }
-
-                  .ui2.flashtimer .timer-block {
-                    width: 48px !important;
-                  }
-
-                  .ui2.flashtimer .timer-block__num::before {
-                    content: ":";
-                    display: block;
-                    position: absolute;
-                    right: 1.5rem;
-                    font-weight: 400;
-                  }
-
-                  .ui2.flashtimer .days-timer.visually-hidden+.timer-block .js-timer-hours::before {
-                    content: none !important;
-                  }
-
-                  .view-all {
-                    color: #2F5B96;
-                    font-size: 14px;
-                    border-radius: 20px;
-                    margin-top: 25px;
-                  }
-
-                  @media (max-width: 767px) {
-                    
-                    .featured_collection_container .ui2.flash_sale p {
-                      color: #000;
-                      font-size: 12px;
-                      padding-right: 4px;
-                      margin-left: 0px !important;
-                      padding-left: 10px;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer .timer__title {
-                      color: #000;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer .timer-block {
-                      width: 40px !important;
-                      color: #000;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer .timer-block__num {
-                      font-size: 16px;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer::before {
-                      height: 90%;
-                      left: -0.4rem;
-                    }
-
-                    .featured_collection_container .ui2.flash_sale {
-                      left: 10px;
-                      gap: 10px;
-                    }
-                  }
-
-                  @media(min-width:992px) {
-                    .ui2.flashtimer::before {
-                      content: none
-                    }
-
-                    .ui2.flashtimer {
-                      line-height: unset;
-                      display: flex;
-                      margin-left: 3rem;
-                      align-items: center;
-                    }
-
-                    .ui2.flashtimer .timer__title {
-                      font-size: 21px !important;
-                      font-weight: 500;
-                      letter-spacing: -0.6px;
-                      width: max-content;
-                    }
-
-                    .ui2.flashtimer .timer-block__num {
-                      display: inline-flex;
-                      font-size: 45px;
-                    }
-
-                    .ui2.flashtimer .timer-block {
-                      width: 170px !important;
-                    }
-
-                    span.timer-block__text {
-                      font-size: 21px;
-                      font-weight: 500;
-                    }
-
-                    .ui2.flash_sale {
-                      margin-top: -95px;
-                      align-items: center;
-                      padding-left: 40px;
-                    }
-
-                    .ui2.flashtimer .timer-block__num::before {
-                      opacity: 0.4
-                    }
-
-                    .featured_collection_container .ui2.flash_sale p {
-                      color: #000;
-                      font-size: 31px;
-                      width: auto;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer {
-                      margin-left: 0px;
-                      width: auto;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer .timer__title {
-                      color: #000;
-                      font-size: 21px !important;
-                    }
-
-                    .featured_collection_container .ui2.flashtimer .timer-block {
-                      color: #000;
-                      width: 148px !important;
-                      line-height: normal;
-                    }
-
-                    .featured_collection_container .ui2.flash_sale {
-                      padding-left: 10px;
-                      display: flex;
-                      justify-content: space-around;
-                      gap: 1.8rem;
-                      align-items: center;
-                      top: 50%;
-                      transform: translateY(-50%);
-                      width: 87%;
-                    }
-
-                    .featured_collection_container .flash_sale.ui2 p br {
-                      display: none;
-                    }
-
-                    .featured_collection_container header a::after {
-                      content: '';
-                      width: 0.5px;
-                      height: 80px;
-                      left: 43.5%;
-                      background: #000;
-                      transform: translate(-44%, -46%);
-                      position: absolute;
-                      top: 50%;
-                    }
-                  }
-                </style>
-              </div>
             </picture>
+            <div class="flash_sale ui2">
+              <div class="flashtimer ui2">
+                <h4 class="timer__title m-0">Ending In</h4>
+                <div class="timer-display">
+                  <div class="timer-block">
+                    <span class="timer-block__num js-timer-hours">24</span>
+                    <span class="timer-block__text">Hours</span>
+                  </div>
+                  <div class="timer-block">
+                    <span class="timer-block__num js-timer-minutes">00</span>
+                    <span class="timer-block__text">Mins</span>
+                  </div>
+                  <div class="timer-block">
+                    <span class="timer-block__num num1 js-timer-seconds">00</span>
+                    <span class="timer-block__text">Sec</span>
+                  </div>
+
+                </div>
+              </div>
+              <script>
+                var second = 1000,
+                  minute = second * 60,
+                  hour = minute * 60,
+                  _day = hour * 24;
+
+                var hr = 23;
+                var min = 59;
+                var sec = 60;
+                var distance = 1;
+                x = setInterval(function () {
+                  var curr = new Date();
+                  // document.querySelector('.flashtimer .js-timer-days').innerText = Math.floor(distance / (_day)) + 'd',
+                  document.querySelector('.flashtimer .js-timer-hours').innerText = pad2(hr - curr.getHours()),
+                    document.querySelector('.flashtimer .js-timer-minutes').innerText = pad2(min - curr.getMinutes()),
+                    document.querySelector('.flashtimer .js-timer-seconds').innerText = pad2(sec - curr.getSeconds());
+                }, second);
+
+
+
+                function pad2(number) {
+                  return (number < 10 ? '0' : '') + number
+                }
+              </script>
+
+            </div>
           </a>
         </div>
 
@@ -1765,7 +1498,6 @@
             </svg>
           </b>
         </div>
-
         <div>
           <button id="soundbar">Soundbars</button>
           <button id="watche">Top Watches</button>
@@ -1783,46 +1515,45 @@
           const soundbar = document.getElementById('soundbar');
           const watche = document.getElementById('watche');
           const accessorie = document.getElementById('accessorie');
-  
-  
+
+
           soundbar.addEventListener('click', () => {
             const soundbars = document.getElementById('soundbars');
             const topwatches = document.getElementById('top-watches');
             const accessories = document.getElementById('accessories');
-  
+
             if (soundbars.style.display === 'none') {
               soundbars.style.display = 'flex';
               topwatches.style.display = 'none';
               accessories.style.display = 'none';
             }
-  
+
           });
           watche.addEventListener('click', () => {
             const soundbars = document.getElementById('soundbars');
             const topwatches = document.getElementById('top-watches');
             const accessories = document.getElementById('accessories');
-  
+
             if (topwatches.style.display === 'none') {
               soundbars.style.display = 'none';
               topwatches.style.display = 'flex';
               accessories.style.display = 'none';
             }
-  
+
           });
           accessorie.addEventListener('click', () => {
             const soundbars = document.getElementById('soundbars');
             const topwatches = document.getElementById('top-watches');
             const accessories = document.getElementById('accessories');
-  
+
             if (accessories.style.display === 'none') {
               soundbars.style.display = 'none';
               topwatches.style.display = 'none';
               accessories.style.display = 'flex';
             }
-  
+
           });
         </script>
-
       </div>
 
     </div>
@@ -1898,12 +1629,12 @@
   </div>
 
 
- <footer>
+  <footer>
     <div class="footer-nav">
       <ul class="footer-nav-list " style="margin-left: 30px;">
         <div class="footer__item">
           <div class="footer-logo">
-            <a href="https://www.boat-lifestyle.com" class="p-0">
+            <a href="#">
               <img class="footer-logo" loading="lazy" sizes="100px"
                 src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo.svg" alt="logo">
             </a>
@@ -1968,7 +1699,7 @@
         </li>
       </ul>
 
-      <ul class="footer-nav-list" style="margin-left: 100px;">
+      <ul class="footer-nav-list" style="margin-left: 180px;">
         <h2 class="nav-title">Help</h2>
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Track Your Order</a></li>
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Warranty & Support</a></li>
@@ -1996,7 +1727,7 @@
         <div class="nav-list">
           <div class="footer__item">
             <div class="footer-logo">
-              <a href="https://www.boat-lifestyle.com" class="p-0">
+              <a href="#" class="p-0">
                 <img class="footer-logo" loading="lazy" sizes="100px"
                   src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo.svg" alt="logo">
               </a>
@@ -2005,7 +1736,7 @@
               <span class="signup-heading"
                 style="display: block;font-size: 24px;font-weight: bold;margin-bottom: 5px;opacity: 1;color:#293036;line-height: normal; margin-left: 10px;">Subscribe
                 to our email alerts!</span>
-  
+
               <span class="input-block">
                 <input autocomplete="autocomplete" type="email" id="subscriber-email"
                   placeholder="Enter your email address" class="required email">
@@ -2027,38 +1758,38 @@
             <div class="hidden-list">
               <ul class="footer-nav-list">
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" >True Wireless Earbuds</a>
+                  <a href="#" class="footer-nav-link">True Wireless Earbuds</a>
                 </li>
-        
+
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Wireless Headphones</a>
+                  <a href="#" class="footer-nav-link">Wireless Headphones</a>
                 </li>
-        
+
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Wired Headphones</a>
                 </li>
-        
+
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Wireless Speakers</a>
+                  <a href="#" class="footer-nav-link">Wireless Speakers</a>
                 </li>
-        
+
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Home Audio</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Mobile Accessories</a>
+                  <a href="#" class="footer-nav-link">Mobile Accessories</a>
                 </li>
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Smart Watches</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">TRebel</a>
+                  <a href="#" class="footer-nav-link">TRebel</a>
                 </li>
                 <li class="footer-nav-item1">
                   <a href="#" class="footer-nav-link">Misfit Trimmers</a>
                 </li>
                 <li class="footer-nav-item1">
-                  <a href="#" class="footer-nav-link" style="margin-left: 120px;">Earn ₹100</a>
+                  <a href="#" class="footer-nav-link">Earn ₹100</a>
                 </li>
               </ul>
             </div>
@@ -2095,7 +1826,7 @@
               </ul>
             </div>
           </div>
-          </div>
+        </div>
       </section>
     </div>
     <div class="footer-bottom">
