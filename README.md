@@ -17,7 +17,7 @@ CSS | HTML | JavaScript | NodeJs
 
 ## Demo
 
-➡️ https://prince61141.github.io/Boat/
+➡️ https://boat-clone-prince.vercel.app/
 
 ## Screenshots
 
