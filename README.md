@@ -7,6 +7,7 @@ This is project of e-commerce website clone of boat.lifestyle.com. It is an onli
 
 - Signin/ signup Page
 - Cart-Page
+- Chat-bot
 - Payment Page
 - Working add-to-cart function and billing total.
 - Countdown timer for deals and offers.
