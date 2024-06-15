@@ -63,7 +63,7 @@ body {
     min-height: 100vh;
 }
 
-#Boat-items {
+#Boat-items, #search_result {
     background: white;
     margin: 30px;
 }
@@ -83,6 +83,17 @@ body {
 
 .cart-toggle {
     display: block;
+}
+#search_result{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    overflow: scroll;
+    gap: 26px;
+    margin: 20px;
+}
+.no_search_result{
+    font-size: 25px;
 }
 
 #airpods,
@@ -689,16 +700,8 @@ body {
     color: rgb(94, 43, 43);
 }
 
-.taste-header {
-    padding-top: 40px;
-    padding-bottom: 10px;
-    position: sticky;
-    top: 0;
-    background: whitesmoke;
-}
 
-
-#airpods {
+#airpods, #search_result {
     margin-top: 10px;
 }
 
@@ -1375,6 +1378,434 @@ li.terms {
 .footer-nav-mobile .footer__item {
     text-align: center;
 }
+
+@media (min-width: 601px) {
+
+    /**
+   * #FOOTER
+   */
+    .ui2.flash_sale {
+        margin-top: -90px;
+    }
+
+    .footer-nav-list {
+        min-width: calc(20% - 26px);
+        width: calc(20% - 26px);
+        margin-left: 10px;
+    }
+
+    .copyright {
+        --fs-8: 0.875rem;
+    }
+}
+
+@media(min-width: 992px) {
+    .ui2.flashtimer::before {
+        content: none
+    }
+
+    .ui2.flashtimer {
+        line-height: unset;
+        display: flex;
+        margin-left: 3rem;
+        align-items: center;
+    }
+
+    .ui2.flashtimer .timer__title {
+        font-size: 21px !important;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        width: max-content;
+    }
+
+    .ui2.flashtimer .timer-block__num {
+        display: inline-flex;
+        font-size: 45px;
+    }
+
+    .ui2.flashtimer .timer-block {
+        width: 170px !important;
+    }
+
+    span.timer-block__text {
+        font-size: 21px;
+        font-weight: 500;
+    }
+
+
+
+    .ui2.flashtimer .timer-block__num::before {
+        opacity: 0.4
+    }
+
+    .featured_collection_container .ui2.flash_sale p {
+        color: #000;
+        font-size: 31px;
+        width: auto;
+    }
+
+    .featured_collection_container .ui2.flashtimer {
+        margin-left: 0px;
+        width: auto;
+    }
+
+    .featured_collection_container .ui2.flashtimer .timer__title {
+        color: #000;
+        font-size: 21px !important;
+    }
+
+    .featured_collection_container .ui2.flashtimer .timer-block {
+        color: #000;
+        width: 148px !important;
+        line-height: normal;
+    }
+
+    .featured_collection_container .ui2.flash_sale {
+        padding-left: 10px;
+        display: flex;
+        justify-content: space-around;
+        gap: 1.8rem;
+        align-items: center;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 87%;
+    }
+
+    .featured_collection_container .flash_sale.ui2 p br {
+        display: none;
+    }
+
+    .featured_collection_container header a::after {
+        content: '';
+        width: 0.5px;
+        height: 80px;
+        left: 43.5%;
+        background: #000;
+        transform: translate(-44%, -46%);
+        position: absolute;
+        top: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .item-container {
+        overflow-y: scroll;
+    }
+    #search_result{
+        grid-template-columns: 49% 49%;
+        gap: 2%;
+        row-gap: 20px;
+        margin: 10px;
+    }
+    /* Item card for search */
+    #search_result #item-card {
+        width: 100%;
+        height: 250px;
+        padding: 4px;
+        display: inline-block;
+        border: 1px solid #ECF0F4;
+        background-color: #FAFAFA;
+        cursor: pointer;
+        transition: 0.3s all step-end;
+        border-radius: 10px;
+    }
+    
+    #search_result #card-top {
+        display: flex;
+        margin: 4px 0;
+        justify-content: space-between;
+    }
+    
+    #search_result .fa-star:before {
+        color: gold;
+        font-size: 10px;
+    }
+    
+    #search_result .fa-badge-check {
+        color: rgb(18, 185, 133);
+    }
+    
+    #search_result #rating {
+        color: rgb(81, 81, 81);
+        font-size: 8px;
+        margin: 0px 3px;
+    }
+    
+    #search_result .add-to-cart {
+        cursor: pointer;
+        margin-left: 110px;
+        margin-top: 20px;
+        background: #1A2024;
+        border: 1px solid #1A2024;
+        padding: 5px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+        width: 100%;
+        text-transform: capitalize;
+    }
+    
+    #search_result #item-card img {
+        width: 105%;
+        height: 180px;
+        margin-left: -5px;
+        margin-top: -6px;
+        display: block;
+        transition: 0.2s all ease-in-out;
+        border-radius: 10px 10px 0 0;
+        object-fit: cover;
+    }
+    
+    #search_result #play-back {
+        margin-top: -72px;
+        text-align: center;
+        font-size: 9px;
+        font-weight: 600;
+        padding: 3px 6px;
+        margin-inline-start: 12%;
+        margin-inline-end: 12%;
+        border: 1px solid white;
+        border-radius: 10px !important;
+        background-color: #fcc50b;
+        position: relative;
+        color: black;
+    }
+
+    #search_result #item-name {
+        margin: 3px 4px;
+        margin-top: 5px;
+        font-weight: bold;
+        color: black;
+        font-size: 12px;
+        letter-spacing: -0.1px;
+    }
+    
+    #search_result #item-price {
+        margin: 3px 0 -2px 4px;
+        font-weight: 700;
+        color: #1a2024;
+        font-size: 12px;
+        letter-spacing: -0.6px;
+        display: flex;
+    }
+    
+    #search_result #item-price .originalprice {
+        margin-left: 4px;
+        font-size: 10px;
+        margin-top: 1px;
+    }
+    
+    #search_result #item-price .offer {
+        font-size: 10px;
+        margin-top: 1px;
+        margin-left: 4px;
+    }
+    
+    /* Cart */
+    #cart-page #table-body {
+        height: 70%;
+        max-height: 50vh;
+    }
+    .coupon {
+        width: 100%;
+        margin: 0px 10px;
+    }
+    .bx-chevron-right{
+        margin-left: 150px;
+    }
+    .heading {
+        margin: 0;
+        padding: 0 16px;
+    }
+
+    #logo {
+        width: 90px;
+        height: 70px;
+    }
+
+    .toggle-category {
+        display: none;
+        position: relative;
+    }
+
+    #Boat-items{
+        margin: 0px;
+    }
+    #airpods, #newlaunches, #accessories, #soundbars, #top-watches {
+        gap: 20px;
+        margin: 10px 0;
+        padding: 0 16px;
+    }
+    #category-name {
+        font-size: 0px;
+        font-family: 'Aclonica', sans-serif;
+        display: none;
+    }
+
+    #item-name,
+    #item-price {
+        font-size: 16px;
+    }
+    .daily-deals{
+        margin: 0px;
+        padding: 0 16px;
+    }
+    .explore-bestsellers{
+        margin: 0;
+        padding: 0 16px;
+    }
+    .explore-bestsellers .video-container video{
+        height: 220px;
+        width: 220px;
+        border-radius: 12px;
+    }
+    .video_title {
+        padding: 0.5rem;
+        font-size: 16px;
+        letter-spacing: -0.52px;
+    }
+    .ui2.flash_sale {
+        margin-top: -80px;
+        margin-left: 140px;
+        text-align: center;
+    }
+
+    .ui2.flashtimer .timer__title {
+        font-size: 8px;
+        margin-right: 0px;
+    }
+
+    .ui2.flashtimer .timer-block {
+        width: 40px;
+    }
+
+    .ui2.flashtimer .timer-block__num::before {
+        right: 0rem;
+    }
+
+    .ui2.flashtimer .timer-block__num {
+        font-size: 16px;
+    }
+
+    .ui2.flashtimer .num1::before {
+        display: none;
+    }
+
+    .featured_collection_container .ui2.flashtimer::before {
+        height: 90%;
+        left: -0.4rem;
+    }
+
+    .collection-row {
+        padding: 0;
+    }
+
+    .img_container img {
+        width: 72px;
+    }
+
+    .category_slider {
+        gap: 10px;
+        padding: 5px 16px;
+    }
+
+    .single_column {
+        max-width: 72px;
+        min-width: 72px;
+    }
+
+    .single_collection .collection_title span {
+        font-size: 10px;
+        min-height: 22px;
+    }
+
+    .single_collection .collection_title {
+        margin-top: 12px;
+    }
+
+    .img_container:after {
+        bottom: 5px !important;
+        width: 52px;
+        height: 52px;
+    }
+
+    .section-p1 {
+        padding: 15px 15px;
+    }
+
+    #feature {
+        gap: 20px;
+        margin: 0;
+    }
+
+    .feature-box p {
+        letter-spacing: 0.30px;
+        font-size: 12px;
+    }
+
+    #feature .feature-box img {
+        width: 65px;
+    }
+
+    .feature-box strong {
+        color: black;
+    }
+    
+    .join-tribe{
+        margin: 0;
+        padding: 0 16px;
+    }
+    .join-tribe .video-container{
+        height: 440px;
+        width: 188px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+    }
+    .join-tribe .video-container video {
+        height: 330px;
+        width: 188px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+    }
+    
+    .join-tribe img {
+        width: 40px;
+        height: 40px;
+        padding: 0px;
+    }
+    
+    .join-tribe .video_title {
+        padding: 0.8rem;
+        font-size: 14px;
+    }
+    .video-container .price{
+        gap: 5px;
+    }
+    .video-container .sellprice {
+        font-size: 16px;
+    }
+    .video-container .offer{
+        font-size: 13px;
+    }
+    .originalprice {
+        font-size: 13px;
+    }
+    .footer-logo {
+        margin: 0;
+    }
+    .footer-bottom .social {
+        margin-top: 10px;
+    }
+
+    .footer-bottom .social-media_item {
+        margin: 0 10px;
+    }
+}
+
 .chatbot-icon img {
     position: fixed;
     bottom: 10px;
@@ -1604,318 +2035,5 @@ li.terms {
 
     100% {
         opacity: 1;
-    }
-}
-@media (min-width: 601px) {
-
-    /**
-   * #FOOTER
-   */
-    .ui2.flash_sale {
-        margin-top: -90px;
-    }
-
-    .footer-nav-list {
-        min-width: calc(20% - 26px);
-        width: calc(20% - 26px);
-        margin-left: 10px;
-    }
-
-    .copyright {
-        --fs-8: 0.875rem;
-    }
-}
-
-@media(min-width: 992px) {
-    .ui2.flashtimer::before {
-        content: none
-    }
-
-    .ui2.flashtimer {
-        line-height: unset;
-        display: flex;
-        margin-left: 3rem;
-        align-items: center;
-    }
-
-    .ui2.flashtimer .timer__title {
-        font-size: 21px !important;
-        font-weight: 500;
-        letter-spacing: -0.6px;
-        width: max-content;
-    }
-
-    .ui2.flashtimer .timer-block__num {
-        display: inline-flex;
-        font-size: 45px;
-    }
-
-    .ui2.flashtimer .timer-block {
-        width: 170px !important;
-    }
-
-    span.timer-block__text {
-        font-size: 21px;
-        font-weight: 500;
-    }
-
-
-
-    .ui2.flashtimer .timer-block__num::before {
-        opacity: 0.4
-    }
-
-    .featured_collection_container .ui2.flash_sale p {
-        color: #000;
-        font-size: 31px;
-        width: auto;
-    }
-
-    .featured_collection_container .ui2.flashtimer {
-        margin-left: 0px;
-        width: auto;
-    }
-
-    .featured_collection_container .ui2.flashtimer .timer__title {
-        color: #000;
-        font-size: 21px !important;
-    }
-
-    .featured_collection_container .ui2.flashtimer .timer-block {
-        color: #000;
-        width: 148px !important;
-        line-height: normal;
-    }
-
-    .featured_collection_container .ui2.flash_sale {
-        padding-left: 10px;
-        display: flex;
-        justify-content: space-around;
-        gap: 1.8rem;
-        align-items: center;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 87%;
-    }
-
-    .featured_collection_container .flash_sale.ui2 p br {
-        display: none;
-    }
-
-    .featured_collection_container header a::after {
-        content: '';
-        width: 0.5px;
-        height: 80px;
-        left: 43.5%;
-        background: #000;
-        transform: translate(-44%, -46%);
-        position: absolute;
-        top: 50%;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .item-container {
-        overflow-y: scroll;
-    }
-
-    #cart-page #table-body {
-        height: 70%;
-        max-height: 50vh;
-    }
-    .coupon {
-        width: 100%;
-        margin: 0px 10px;
-    }
-    .bx-chevron-right{
-        margin-left: 150px;
-    }
-    .heading {
-        margin: 0;
-        padding: 0 16px;
-    }
-
-    #logo {
-        width: 90px;
-        height: 70px;
-    }
-
-    .toggle-category {
-        display: none;
-        position: relative;
-    }
-
-    #Boat-items {
-        margin: 0px;
-    }
-    #airpods, #newlaunches, #accessories, #soundbars, #top-watches {
-        gap: 20px;
-        margin: 10px 0;
-        padding: 0 16px;
-    }
-    #category-name {
-        font-size: 0px;
-        font-family: 'Aclonica', sans-serif;
-        display: none;
-    }
-
-    #item-name,
-    #item-price {
-        font-size: 16px;
-    }
-    .daily-deals{
-        margin: 0px;
-        padding: 0 16px;
-    }
-    .explore-bestsellers{
-        margin: 0;
-        padding: 0 16px;
-    }
-    .explore-bestsellers .video-container video{
-        height: 220px;
-        width: 220px;
-        border-radius: 12px;
-    }
-    .video_title {
-        padding: 0.5rem;
-        font-size: 16px;
-        letter-spacing: -0.52px;
-    }
-    .ui2.flash_sale {
-        margin-top: -80px;
-        margin-left: 140px;
-        text-align: center;
-    }
-
-    .ui2.flashtimer .timer__title {
-        font-size: 8px;
-        margin-right: 0px;
-    }
-
-    .ui2.flashtimer .timer-block {
-        width: 40px;
-    }
-
-    .ui2.flashtimer .timer-block__num::before {
-        right: 0rem;
-    }
-
-    .ui2.flashtimer .timer-block__num {
-        font-size: 16px;
-    }
-
-    .ui2.flashtimer .num1::before {
-        display: none;
-    }
-
-    .featured_collection_container .ui2.flashtimer::before {
-        height: 90%;
-        left: -0.4rem;
-    }
-
-    .collection-row {
-        padding: 0;
-    }
-
-    .img_container img {
-        width: 72px;
-    }
-
-    .category_slider {
-        gap: 10px;
-        padding: 5px 16px;
-    }
-
-    .single_column {
-        max-width: 72px;
-        min-width: 72px;
-    }
-
-    .single_collection .collection_title span {
-        font-size: 10px;
-        min-height: 22px;
-    }
-
-    .single_collection .collection_title {
-        margin-top: 12px;
-    }
-
-    .img_container:after {
-        bottom: 5px !important;
-        width: 52px;
-        height: 52px;
-    }
-
-    .section-p1 {
-        padding: 15px 15px;
-    }
-
-    #feature {
-        gap: 20px;
-        margin: 0;
-    }
-
-    .feature-box p {
-        letter-spacing: 0.30px;
-        font-size: 12px;
-    }
-
-    #feature .feature-box img {
-        width: 65px;
-    }
-
-    .feature-box strong {
-        color: black;
-    }
-    
-    .join-tribe{
-        margin: 0;
-        padding: 0 16px;
-    }
-    .join-tribe .video-container{
-        height: 440px;
-        width: 188px;
-        border-top-right-radius: 8px;
-        border-top-left-radius: 8px;
-    }
-    .join-tribe .video-container video {
-        height: 330px;
-        width: 188px;
-        border-top-right-radius: 8px;
-        border-top-left-radius: 8px;
-    }
-    
-    .join-tribe img {
-        width: 40px;
-        height: 40px;
-        padding: 0px;
-    }
-    
-    .join-tribe .video_title {
-        padding: 0.8rem;
-        font-size: 14px;
-    }
-    .video-container .price{
-        gap: 5px;
-    }
-    .video-container .sellprice {
-        font-size: 16px;
-    }
-    .video-container .offer{
-        font-size: 13px;
-    }
-    .originalprice {
-        font-size: 13px;
-    }
-    .footer-logo {
-        margin: 0;
-    }
-    .footer-bottom .social {
-        margin-top: 10px;
-    }
-
-    .footer-bottom .social-media_item {
-        margin: 0 10px;
     }
 }
