@@ -307,7 +307,7 @@ function displayItems(){
         itemCard.appendChild(itemPrice);
         itemCard.appendChild(star);
         itemCard.appendChild(badge);
-
+        
         topWatches.appendChild(itemCard)
 
     })
@@ -315,34 +315,97 @@ function displayItems(){
 displayItems();
 
 
-const vegData= [...new Map(boatItem.map(item=> [item['category'],item])).values()];
-console.log(vegData);
+/*Search-bar*/
 
-function selectTaste(){
-    var categoryList= document.getElementById('category-list');
+const categories = [...new Set(boatItem.map((item) => { return item }))]
 
-    vegData.map(item=>{
-        console.log(item)
-        var listCard= document.createElement('div');
-        listCard.setAttribute('class','list-card');
+document.getElementById('myInput').addEventListener('keyup', (e) => {
     
-        var listImg= document.createElement('img');
-        listImg.src= item.img;
-    
-        var listName= document.createElement('a');
-        listName.setAttribute('class','list-name');
-        listName.innerText= item.category;
-        listName.setAttribute('href','#'+item.category)
-    
-        listCard.appendChild(listImg);
-        listCard.appendChild(listName);
-
-        var cloneListCard= listCard.cloneNode(true);
-        categoryList.appendChild(listCard);
-
+    const searchData = e.target.value.toLowerCase();
+    const filteredData = categories.filter((item) => {
+        return (
+            item.name.toLowerCase().includes(searchData)
+        )
     })
-}
-selectTaste();
+    displayItem(filteredData)
+});
+
+var roots = document.getElementById('search_result');
+
+function displayItem(items) {
+    roots.innerHTML = '';
+    if (items.length === 0) {
+        const noResultsMessage = document.createElement('p');
+        noResultsMessage.setAttribute('class','no_search_result');
+
+        noResultsMessage.innerText = 'No results found';
+        roots.appendChild(noResultsMessage);
+      } 
+      else {
+    items.forEach((item) => {
+
+      var itemCard= document.createElement('div');
+      itemCard.setAttribute('id','item-card');
+  
+      var cardTop= document.createElement('div');
+      cardTop.setAttribute('id','card-top');
+  
+      var star= document.createElement('i');
+      star.setAttribute('class','fa fa-star');
+      star.setAttribute('id','rating');
+      star.innerText= ' ' + item.rating + ' ';
+  
+      var badge= document.createElement('i');
+      badge.setAttribute('class','fas fa-badge-check fa-xs');
+  
+      var AddtoCart= document.createElement('button');
+      AddtoCart.setAttribute('class','add-to-cart');
+      AddtoCart.setAttribute('id',item.id)
+      AddtoCart.innerText= 'Add to cart';
+  
+      cardTop.appendChild(AddtoCart);
+
+      AddtoCart.addEventListener('click', addToCart);
+  
+      var img= document.createElement('img');
+      img.src=item.img;
+  
+      var playback= document.createElement('p');
+      playback.setAttribute('id','play-back');
+      playback.innerText= item.hours;
+  
+      var itemName= document.createElement('p');
+      itemName.setAttribute('id','item-name');
+      itemName.innerText= item.name;
+  
+      var itemPrice= document.createElement('p');
+      itemPrice.setAttribute('id','item-price');
+      itemPrice.innerText= '₹' + item.price;
+  
+      var originalPrice= document.createElement('p');
+      originalPrice.setAttribute('class','originalprice');
+      originalPrice.innerText= '₹' +  item.originalprice;
+  
+      var offers= document.createElement('p');
+      offers.setAttribute('class','offer');
+      offers.innerText= item.offer + '%' + ' off';
+  
+      itemCard.appendChild(img);
+      itemCard.appendChild(cardTop);
+      itemCard.appendChild(playback);
+      itemCard.appendChild(itemName);
+      itemPrice.appendChild(originalPrice);
+      itemPrice.appendChild(offers);
+      itemCard.appendChild(itemPrice);
+      itemCard.appendChild(star);
+      itemCard.appendChild(badge);
+  
+      roots.appendChild(itemCard);
+    })
+    }
+  };
+
+displayItem(categories);
 
 
 document.querySelectorAll('.add-to-cart').forEach(item=>{
@@ -369,7 +432,6 @@ function addToCart(){
     totalAmount();
     cartItems();
 }
-
 
 function cartItems(){
     var tableBody=  document.getElementById('table-body');
@@ -422,6 +484,7 @@ function cartItems(){
         item.addEventListener('click',decrementItem)
     })
 }
+
 
 
 function incrementItem(){
@@ -503,7 +566,6 @@ function addEvents(){
         item.addEventListener('click',decrementItem)
     })
 }
-/* footer */
 let accordian = document.getElementsByClassName("nav-title");
 
 for (let i = 0; i < accordian.length; i++) {
@@ -524,3 +586,4 @@ for (let i = 0; i < accordian.length; i++) {
     }
   });
 }
+
