@@ -258,34 +258,59 @@
       column-gap: 1.3rem;
     }
 
-    .right-container .search {
-      position: relative;
-    }
-
-    input.search_bar {
+    .search-btn,
+    .close-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+      background: #eeeeee;
       border: none;
-      outline: none;
-      width: 20px;
-      border-radius: 55px;
-      margin: 0 auto;
-      font-size: 1em;
-      color: #0d2840;
-      padding: 10px 25px 10px 25px;
-      transition: all .3s cubic-bezier(0, 0, .5, .5);
-      box-shadow: 0 3px 5px -2px rgba(0, 0, 0, .1);
-      background: #eef1ee url(./icons8-search-20.svg) no-repeat center center;
-      position: relative;
-      left: 7px;
-    }
-
-    input.search_bar:focus {
-      width: 100%;
-      position: relative;
-      background-image: none;
-    }
-
-    input.search_bar:hover {
       cursor: pointer;
+      position: absolute;
+      transition: all 0.25s ease;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    .close-btn {
+      color: black;
+      z-index: -1;
+      background: none;
+      font-size: 12px;
+    }
+
+    .search-box {
+      width: 35px;
+      height: 35px;
+      padding: 20px;
+      border-radius: 25px;
+      background: #eeeeee;
+      outline: none;
+      border: none;
+      transition: width 0.25s ease;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .active .search-box {
+      width: 250px;
+      height: 40px;
+      padding: 15px 25px;
+    }
+
+    .active .search-btn {
+      transform: translate(-4px, 3px) scale(0.8);
+      background-color: transparent;
+      top: 23px;
+    }
+
+    .active .close-btn {
+      z-index: 0;
+      transform: translate(215px, 2px);
     }
 
     #hamburger {
@@ -528,7 +553,38 @@
 
       .menu-bar li:first-child .dropdown {
         width: 130%;
-        margin-left: -80px
+        margin-left: -80px;
+      }
+
+      .right-container {
+        column-gap: 20px;
+      }
+
+      .close-btn {
+        width: 30;
+        height: 30;
+        font-size: 12px;
+        background: none;
+      }
+
+      .search {
+        margin-left: -4%;
+      }
+
+      .active .search-box {
+        width: 160px;
+        padding: 15px 20px;
+      }
+
+      .active .search-btn {
+        transform: translate(-7px, 3px) scale(0.8);
+        background-color: transparent;
+        top: 15px;
+      }
+
+      .active .close-btn {
+        z-index: 0;
+        transform: translate(130px, 2px);
       }
 
       .dot {
@@ -748,10 +804,55 @@
 
       <div class="nav-end">
         <div class="right-container">
-          <form class="search" role="search">
-            <input class="search_bar" id="myInput" onkeyup="myFunction()" name="search_bar" type="text"
-              placeholder="Search">
-          </form>
+          <div class="search">
+            <input type="text" id="myInput" class="search-box" placeholder="Search...">
+            <button class="search-btn" onclick="search_open()"><i class="ph-magnifying-glass-bold"></i></button>
+            <button class="close-btn" onclick="search_close()"><i class="ph-x-bold"></i></button>
+          </div>
+          <script src="https://unpkg.com/phosphor-icons"></script>
+          <script>
+            function search_open() {
+              const body = document.getElementById("body");
+              const search_container = document.getElementById("search_container");
+
+              if (body.style.display = 'block') {
+                body.style.display = 'none';
+                search_container.style.display = 'block';
+              }
+            }
+            function search_close() {
+              const body = document.getElementById("body");
+              const search_container = document.getElementById("search_container");
+
+              if (body.style.display = 'none') {
+                body.style.display = 'block';
+                search_container.style.display = 'none';
+              }
+            }
+
+            const searchBox = document.querySelector('.search-box');
+            const searchBtn = document.querySelector('.search-btn');
+            const search = document.querySelector('.search');
+            const closeBtn = document.querySelector('.close-btn');
+            searchBtn.addEventListener('click', function () {
+              console.log(search.classList.contains('active'));
+
+              if (search.classList.contains('active')) {
+                searchBox.value = ''
+              }
+              else {
+                search.classList.add('active');
+                searchBox.focus();
+
+              }
+            })
+
+            closeBtn.addEventListener('click', function () {
+              search.classList.remove('active');
+              searchBox.value = '';
+            })
+          </script>
+
           <a href="/" id="user">
             <i class="fas fa-user"></i>
           </a>
@@ -915,6 +1016,7 @@
                   </div>
 
                 </div>
+
                 <script>
                   function toggleBlock() {
                     var block = document.getElementById('couponapply');
@@ -995,9 +1097,6 @@
                       total.style.display = 'none';
                     }
                   });
-
-
-
                 </script>
               </div>
             </div>
@@ -1075,716 +1174,726 @@
     hamburgerBtn.addEventListener("click", toggleHamburger)
   </script>
 
-  <!-- Slideshow -->
-  <div class="slideshow-container">
-
-    <div class="mySlides fade">
-      <picture>
-        <img source media="(max-width: 769px)" alt="" height="640" class="image-mobile" width="100%"
-          srcset="./images/slideshow_3.jpg">
-        <img width="100%" height="552" class="image-desktop" alt="" src="./images/Desktop/slideshow_3.jpg">
-      </picture>
-    </div>
-
-    <div class="mySlides fade">
-      <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile" height="640" width="100%"
-          srcset="./images/slideshow_1.gif">
-        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_1.gif">
-      </picture>
-    </div>
-    <div class="mySlides fade">
-      <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_2.jpg"
-          height="640" width="100%">
-        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_2.jpg">
-      </picture>
-    </div>
-    <div class="mySlides fade">
-      <picture>
-        <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_4.jpg"
-          height="640" width="100%">
-        <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_4.jpg">
-      </picture>
-    </div>
-
-    <div class="showdot" style="text-align: center;">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+  <div id="search_container" style="display: none;">
+    <div id="search_result"></div>
   </div>
-  </div>
-  <script>
-    let slideIndex = 0;
-    showSlides();
 
-    function showSlides() {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("dot");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+  <div id="body" style="display: block;">
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <picture>
+          <img source media="(max-width: 769px)" alt="" height="640" class="image-mobile" width="100%"
+            srcset="./images/slideshow_3.jpg">
+          <img width="100%" height="552" class="image-desktop" alt="" src="./images/Desktop/slideshow_3.jpg">
+        </picture>
+      </div>
+
+      <div class="mySlides fade">
+        <picture>
+          <img source media="(max-width: 769px)" alt="" class="image-mobile" height="640" width="100%"
+            srcset="./images/slideshow_1.gif">
+          <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_1.gif">
+        </picture>
+      </div>
+      <div class="mySlides fade">
+        <picture>
+          <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_2.jpg"
+            height="640" width="100%">
+          <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_2.jpg">
+        </picture>
+      </div>
+      <div class="mySlides fade">
+        <picture>
+          <img source media="(max-width: 769px)" alt="" class="image-mobile" srcset="./images/slideshow_4.jpg"
+            height="640" width="100%">
+          <img width="100%" height="552" alt="" class="image-desktop" src="./images/Desktop/slideshow_4.jpg">
+        </picture>
+      </div>
+
+      <div class="showdot" style="text-align: center;">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <script>
+      let slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
       }
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1 }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+
+    </script>
+
+    <!-- Product Video -->
+    <div class="heading d-heading">
+      <p class="h2-heading">Explore<span>&nbsp;<b>Bestsellers</b>
+          <sale></sale>
+        </span>
+      </p>
+    </div>
+
+    <div class="explore-bestsellers">
+      <div class="video-container">
+        <video src="./images/Smart-watch_video.mp4" type="video/mp4" loop class="clip" muted>
+        </video>
+        <span class="video_title">Smart Watches</span>
+      </div>
+      <div class="video-container">
+        <video src="./images/Wireless-Earbuds_video.mp4" type="video/mp4" loop class="clip" muted>
+        </video>
+        <span class="video_title">Wireless Earbuds</span>
+      </div>
+      <div class="video-container">
+        <video src="./images/Neckbands_video.mp4" type="video/mp4" loop class="clip" muted>
+        </video>
+        <span class="video_title">Neckbands</span>
+      </div>
+      <div class="video-container">
+        <video src="./images/Headphones_video.mp4" type="video/mp4" loop class="clip" muted>
+        </video>
+        <span class="video_title">Headphones</span>
+      </div>
+      <div class="video-container">
+        <video src="./images/Wireless-speakers_video.mp4" type="video/mp4" loop class="clip" muted width="320px"
+          height="320px">
+        </video>
+        <span class="video_title">Wireless Speakers</span>
+      </div>
+    </div>
+    <script>
+      const clip = document.querySelectorAll('.clip');
+      for (let i = 0; i < clip.length; i++) {
+        clip[i].addEventListener('mouseover', function (e) {
+          clip[i].play()
+        })
+        clip[i].addEventListener('mouseout', function (e) {
+          clip[i].pause()
+        })
       }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
-
-  </script>
-
-  <!-- Product Video -->
-  <div class="heading d-heading">
-    <p class="h2-heading">Explore<span>&nbsp;<b>Bestsellers</b>
-        <sale></sale>
-      </span>
-    </p>
-  </div>
-
-  <div class="explore-bestsellers">
-    <div class="video-container">
-      <video src="./images/Smart-watch_video.mp4" type="video/mp4" loop class="clip" muted>
-      </video>
-      <span class="video_title">Smart Watches</span>
-    </div>
-    <div class="video-container">
-      <video src="./images/Wireless-Earbuds_video.mp4" type="video/mp4" loop class="clip" muted>
-      </video>
-      <span class="video_title">Wireless Earbuds</span>
-    </div>
-    <div class="video-container">
-      <video src="./images/Neckbands_video.mp4" type="video/mp4" loop class="clip" muted>
-      </video>
-      <span class="video_title">Neckbands</span>
-    </div>
-    <div class="video-container">
-      <video src="./images/Headphones_video.mp4" type="video/mp4" loop class="clip" muted>
-      </video>
-      <span class="video_title">Headphones</span>
-    </div>
-    <div class="video-container">
-      <video src="./images/Wireless-speakers_video.mp4" type="video/mp4" loop class="clip" muted width="320px"
-        height="320px">
-      </video>
-      <span class="video_title">Wireless Speakers</span>
-    </div>
-  </div>
-  <script>
-    const clip = document.querySelectorAll('.clip');
-    for (let i = 0; i < clip.length; i++) {
-      clip[i].addEventListener('mouseover', function (e) {
-        clip[i].play()
-      })
-      clip[i].addEventListener('mouseout', function (e) {
-        clip[i].pause()
-      })
-    }
-  </script>
+    </script>
 
 
-  <script src="./index.js" type="module"></script>
+    <script src="./index.js" type="module"></script>
 
-  <div class="container" id="container">
+    <div class="container" id="container">
 
-    <div id="boat-container">
-      <div id="header">
+      <div id="boat-container">
+        <div id="header">
 
-      </div>
-
-      <div id="Boat-items" class="d-Boat-items">
-
-        <div class="heading">
-          <p class="h2-heading1">Today's<span>&nbsp;<b>Offers</b>
-              <sale></sale>
-            </span>
-          </p>
-          <b class="view-all">View All
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-              <path id="Path_337386" data-name="Path 337386"
-                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-            </svg>
-          </b>
         </div>
 
-        <!-- Deal Timer -->
-        <div class="daily-deals">
-          <a class="deals" href="#">
-            <picture>
-              <source media="(min-width: 769px)" height="100%" width="100%" alt="" srcset="./images/Desktop/deal.jpg">
-              <img alt="deal_background" style="border-radius: 10px" width="100%" height="104"
-                src="./images/deal_moblie.jpg" srcset="./images/deal_moblie.jpg">
-            </picture>
-            <div class="flash_sale ui2">
-              <div class="flashtimer ui2">
-                <h4 class="timer__title m-0">Ending In</h4>
-                <div class="timer-display">
-                  <div class="timer-block">
-                    <span class="timer-block__num js-timer-hours">24</span>
-                    <span class="timer-block__text">Hours</span>
-                  </div>
-                  <div class="timer-block">
-                    <span class="timer-block__num js-timer-minutes">00</span>
-                    <span class="timer-block__text">Mins</span>
-                  </div>
-                  <div class="timer-block">
-                    <span class="timer-block__num num1 js-timer-seconds">00</span>
-                    <span class="timer-block__text">Sec</span>
-                  </div>
+        <div id="Boat-items" class="d-Boat-items">
 
-                </div>
-              </div>
-              <script>
-                var second = 1000,
-                  minute = second * 60,
-                  hour = minute * 60,
-                  _day = hour * 24;
+          <div class="heading">
+            <p class="h2-heading1">Today's<span>&nbsp;<b>Offers</b>
+                <sale></sale>
+              </span>
+            </p>
+            <b class="view-all">View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                <path id="Path_337386" data-name="Path 337386"
+                  d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                  transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+              </svg>
+            </b>
+          </div>
 
-                var hr = 23;
-                var min = 59;
-                var sec = 60;
-                var distance = 1;
-                x = setInterval(function () {
-                  var curr = new Date();
-                  // document.querySelector('.flashtimer .js-timer-days').innerText = Math.floor(distance / (_day)) + 'd',
-                  document.querySelector('.flashtimer .js-timer-hours').innerText = pad2(hr - curr.getHours()),
-                    document.querySelector('.flashtimer .js-timer-minutes').innerText = pad2(min - curr.getMinutes()),
-                    document.querySelector('.flashtimer .js-timer-seconds').innerText = pad2(sec - curr.getSeconds());
-                }, second);
-
-
-
-                function pad2(number) {
-                  return (number < 10 ? '0' : '') + number
-                }
-              </script>
-
-            </div>
-          </a>
-        </div>
-
-        <div id="airpods" class="d-airpods"></div>
-
-        <div class="heading">
-          <p class="h2-heading">Shop by<span>&nbsp;<b>Categories</b>
-              <sale></sale>
-            </span></p><b class="view-all">View All
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-              <path id="Path_337386" data-name="Path 337386"
-                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-            </svg>
-          </b>
-        </div>
-
-        <div class="shop-by-categories">
-
-          <!-- Shop by section starts here -->
-          <div class="collection-row">
-            <div class="category_slider desktop-only">
-
-              <div class="single_column">
-                <div class="single_collection">
-                  <div class="img_container">
-                    <a href="/collections/true-wireless-earbuds">
-                      <img loading="lazy" src="./images/True-wireless-earbuds_small.png" alt="True Wireless Earbuds">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/true-wireless-earbuds"><span>True Wireless Earbuds</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection ">
-                  <div class="img_container">
-                    <a href="/collections/wireless-earphones">
-                      <img loading="lazy" src="./images/Neckbands.png" alt="Neckbands">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/wireless-earphones"><span>Neckbands</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection">
-                  <div class="img_container">
-                    <a href="/collections/smart-watches">
-                      <img loading="lazy" src="./images/Smartwatches.jpg" alt="Smart Watches">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/smart-watches"><span>Smart Watches</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/rockerz-headphones">
-                      <img loading="lazy" src="./images/Wireless-Headphones_small.png" alt="Wireless Headphones">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/rockerz-headphones"><span>Wireless Headphones</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection">
-                  <div class="img_container">
-                    <a href="/collections/wireless-speakers">
-                      <img loading="lazy" src="./images/Wireless-Speaker_small.png" alt="Wireless Speakers">
-                    </a>
+          <!-- Deal Timer -->
+          <div class="daily-deals">
+            <a class="deals" href="#">
+              <picture>
+                <source media="(min-width: 769px)" height="100%" width="100%" alt="" srcset="./images/Desktop/deal.jpg">
+                <img alt="deal_background" style="border-radius: 10px" width="100%" height="104"
+                  src="./images/deal_moblie.jpg" srcset="./images/deal_moblie.jpg">
+              </picture>
+              <div class="flash_sale ui2">
+                <div class="flashtimer ui2">
+                  <h4 class="timer__title m-0">Ending In</h4>
+                  <div class="timer-display">
+                    <div class="timer-block">
+                      <span class="timer-block__num js-timer-hours">24</span>
+                      <span class="timer-block__text">Hours</span>
+                    </div>
+                    <div class="timer-block">
+                      <span class="timer-block__num js-timer-minutes">00</span>
+                      <span class="timer-block__text">Mins</span>
+                    </div>
+                    <div class="timer-block">
+                      <span class="timer-block__num num1 js-timer-seconds">00</span>
+                      <span class="timer-block__text">Sec</span>
+                    </div>
 
                   </div>
-                  <div class="collection_title">
-                    <a href="/collections/wireless-speakers"><span>Wireless Speakers</span></a>
+                </div>
+                <script>
+                  var second = 1000,
+                    minute = second * 60,
+                    hour = minute * 60,
+                    _day = hour * 24;
+
+                  var hr = 23;
+                  var min = 59;
+                  var sec = 60;
+                  var distance = 1;
+                  x = setInterval(function () {
+                    var curr = new Date();
+                    // document.querySelector('.flashtimer .js-timer-days').innerText = Math.floor(distance / (_day)) + 'd',
+                    document.querySelector('.flashtimer .js-timer-hours').innerText = pad2(hr - curr.getHours()),
+                      document.querySelector('.flashtimer .js-timer-minutes').innerText = pad2(min - curr.getMinutes()),
+                      document.querySelector('.flashtimer .js-timer-seconds').innerText = pad2(sec - curr.getSeconds());
+                  }, second);
+
+
+
+                  function pad2(number) {
+                    return (number < 10 ? '0' : '') + number
+                  }
+                </script>
+
+              </div>
+            </a>
+          </div>
+
+          <div id="airpods" class="d-airpods"></div>
+
+          <div class="heading">
+            <p class="h2-heading">Shop by<span>&nbsp;<b>Categories</b>
+                <sale></sale>
+              </span></p><b class="view-all">View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                <path id="Path_337386" data-name="Path 337386"
+                  d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                  transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+              </svg>
+            </b>
+          </div>
+
+          <div class="shop-by-categories">
+
+            <!-- Shop by section starts here -->
+            <div class="collection-row">
+              <div class="category_slider desktop-only">
+
+                <div class="single_column">
+                  <div class="single_collection">
+                    <div class="img_container">
+                      <a href="/collections/true-wireless-earbuds">
+                        <img loading="lazy" src="./images/True-wireless-earbuds_small.png" alt="True Wireless Earbuds">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/true-wireless-earbuds"><span>True Wireless Earbuds</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/wired-headphones-1">
-                      <img loading="lazy" src="./images/Wired-Headphones_small.png" alt="Wired Headphones">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/wired-headphones-1"><span>Wired Headphones</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/wired-headphones">
-                      <img loading="lazy" src="./images/Wired-Earphones_small.png" alt="Wired Earphones">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/wired-headphones"><span>Wired Earphones</span></a>
+                <div class="single_column">
+                  <div class="single_collection ">
+                    <div class="img_container">
+                      <a href="/collections/wireless-earphones">
+                        <img loading="lazy" src="./images/Neckbands.png" alt="Neckbands">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/wireless-earphones"><span>Neckbands</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/home-audio">
-                      <img loading="lazy" src="./images/Soundbars.png" alt="Soundbars">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/home-audio"><span>Soundbars</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/immortal-gaming">
-                      <img loading="lazy" src="./images/Gaming-Headphones_small.png" alt="Gaming Headphones">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/immortal-gaming"><span>Gaming Headphones</span></a>
+                <div class="single_column">
+                  <div class="single_collection">
+                    <div class="img_container">
+                      <a href="/collections/smart-watches">
+                        <img loading="lazy" src="./images/Smartwatches.jpg" alt="Smart Watches">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/smart-watches"><span>Smart Watches</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/wireless-speakers">
-                      <img loading="lazy" src="./images/party_speakers.png" alt="Party Speakers">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/wireless-speakers"><span>Party Speakers</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/misfit-by-boat">
-                      <img loading="lazy" src="./images/Trimmers.png" alt="Trimmers">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/misfit-by-boat"><span>Trimmers</span></a>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/rockerz-headphones">
+                        <img loading="lazy" src="./images/Wireless-Headphones_small.png" alt="Wireless Headphones">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/rockerz-headphones"><span>Wireless Headphones</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/chargers">
-                      <img loading="lazy" src="./images/Chargers.png" alt="Chargers">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/chargers"><span>Chargers</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/power-banks">
-                      <img loading="lazy" src="./images/Powerbanks_small.png" alt="Power banks">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/power-banks"><span>Power banks</span></a>
+                <div class="single_column">
+                  <div class="single_collection">
+                    <div class="img_container">
+                      <a href="/collections/wireless-speakers">
+                        <img loading="lazy" src="./images/Wireless-Speaker_small.png" alt="Wireless Speakers">
+                      </a>
+
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/wireless-speakers"><span>Wireless Speakers</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection">
-                  <div class="img_container">
-                    <a href="/collections/cables">
-                      <img loading="lazy" src="./images/Cables.png" alt="Cables">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/cables"><span>Cables</span></a>
-                  </div>
-                </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection">
-                  <div class="img_container">
-                    <a href="/collections/car-accessories">
-                      <img loading="lazy" src="./images/Car-Accessories.png" alt="Car Accessories">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/car-accessories"><span>Car Accessories</span></a>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/wired-headphones-1">
+                        <img loading="lazy" src="./images/Wired-Headphones_small.png" alt="Wired Headphones">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/wired-headphones-1"><span>Wired Headphones</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/trebel-for-women">
-                      <img loading="lazy" src="./images/T-rebel_small.png" alt="TRebel Range">
-                    </a>
-                  </div>
-                  <div class="collection_title">
-                    <a href="/collections/trebel-for-women"><span>TRebel Range</span></a>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/wired-headphones">
+                        <img loading="lazy" src="./images/Wired-Earphones_small.png" alt="Wired Earphones">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/wired-headphones"><span>Wired Earphones</span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="single_column">
-                <div class="single_collection  ">
-                  <div class="img_container">
-                    <a href="/collections/limited-edition">
-                      <img loading="lazy" src="./images/Limited-Edition.png" alt="Limited Editions">
-                    </a>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/home-audio">
+                        <img loading="lazy" src="./images/Soundbars.png" alt="Soundbars">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/home-audio"><span>Soundbars</span></a>
+                    </div>
                   </div>
-                  <div class="collection_title">
-                    <a href="/collections/limited-edition"><span>Limited Editions</span></a>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/immortal-gaming">
+                        <img loading="lazy" src="./images/Gaming-Headphones_small.png" alt="Gaming Headphones">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/immortal-gaming"><span>Gaming Headphones</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/wireless-speakers">
+                        <img loading="lazy" src="./images/party_speakers.png" alt="Party Speakers">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/wireless-speakers"><span>Party Speakers</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/misfit-by-boat">
+                        <img loading="lazy" src="./images/Trimmers.png" alt="Trimmers">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/misfit-by-boat"><span>Trimmers</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/chargers">
+                        <img loading="lazy" src="./images/Chargers.png" alt="Chargers">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/chargers"><span>Chargers</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/power-banks">
+                        <img loading="lazy" src="./images/Powerbanks_small.png" alt="Power banks">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/power-banks"><span>Power banks</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection">
+                    <div class="img_container">
+                      <a href="/collections/cables">
+                        <img loading="lazy" src="./images/Cables.png" alt="Cables">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/cables"><span>Cables</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection">
+                    <div class="img_container">
+                      <a href="/collections/car-accessories">
+                        <img loading="lazy" src="./images/Car-Accessories.png" alt="Car Accessories">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/car-accessories"><span>Car Accessories</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/trebel-for-women">
+                        <img loading="lazy" src="./images/T-rebel_small.png" alt="TRebel Range">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/trebel-for-women"><span>TRebel Range</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="single_column">
+                  <div class="single_collection  ">
+                    <div class="img_container">
+                      <a href="/collections/limited-edition">
+                        <img loading="lazy" src="./images/Limited-Edition.png" alt="Limited Editions">
+                      </a>
+                    </div>
+                    <div class="collection_title">
+                      <a href="/collections/limited-edition"><span>Limited Editions</span></a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Shop by section ends here -->
+
           </div>
-          <!-- Shop by section ends here -->
-
-        </div>
 
 
-        <div class="heading">
-          <p class="h2-heading1">New<span>&nbsp;<b>Launches</b>
-              <sale></sale>
-            </span>
-          </p>
-          <b class="view-all">View All
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-              <path id="Path_337386" data-name="Path 337386"
-                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-            </svg>
-          </b>
-        </div>
-
-        <div id="newlaunches" class="d-newlaunches">
-        </div>
-
-        <section id="feature" class="section-p1">
-
-          <div class="feature-box">
-            <img alt="" src="./images/Group_334305_small.svg">
-            <p><strong>1 year </strong> Warranty</p>
+          <div class="heading">
+            <p class="h2-heading1">New<span>&nbsp;<b>Launches</b>
+                <sale></sale>
+              </span>
+            </p>
+            <b class="view-all">View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                <path id="Path_337386" data-name="Path 337386"
+                  d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                  transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+              </svg>
+            </b>
           </div>
-          <div class="feature-box">
-            <img alt="" src="./images/Group_334304_small.svg">
-            <p><strong>7-day</strong> Replacement</p>
+
+          <div id="newlaunches" class="d-newlaunches">
           </div>
-          <div class="feature-box">
-            <img alt="" src="./images/Group_334303_small.svg">
-            <p><strong>Free</strong> Shipping</p>
+
+          <section id="feature" class="section-p1">
+
+            <div class="feature-box">
+              <img alt="" src="./images/Group_334305_small.svg">
+              <p><strong>1 year </strong> Warranty</p>
+            </div>
+            <div class="feature-box">
+              <img alt="" src="./images/Group_334304_small.svg">
+              <p><strong>7-day</strong> Replacement</p>
+            </div>
+            <div class="feature-box">
+              <img alt="" src="./images/Group_334303_small.svg">
+              <p><strong>Free</strong> Shipping</p>
+            </div>
+            <div class="feature-box">
+              <img alt="" src="./images/Group_334302_small.svg">
+              <p><strong>GST</strong> Billing</p>
+            </div>
+          </section>
+
+
+
+          <div class="heading">
+            <p class="h2-heading">Shop by<span>&nbsp;<b>Lifestyle</b>
+                <sale></sale>
+              </span>
+            </p>
+            <b class="view-all">View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                <path id="Path_337386" data-name="Path 337386"
+                  d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                  transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+              </svg>
+            </b>
           </div>
-          <div class="feature-box">
-            <img alt="" src="./images/Group_334302_small.svg">
-            <p><strong>GST</strong> Billing</p>
-          </div>
-        </section>
 
+          <div class="row">
+            <div class="explore-items">
+              <div class="explore-items-inner" style="width: 1315px;">
+                <div class="Box" style="width: 240.4px;">
+                  <div class="explore_item">
 
-
-        <div class="heading">
-          <p class="h2-heading">Shop by<span>&nbsp;<b>Lifestyle</b>
-              <sale></sale>
-            </span>
-          </p>
-          <b class="view-all">View All
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-              <path id="Path_337386" data-name="Path 337386"
-                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-            </svg>
-          </b>
-        </div>
-
-        <div class="row">
-          <div class="explore-items">
-            <div class="explore-items-inner" style="width: 1315px;">
-              <div class="Box" style="width: 240.4px;">
-                <div class="explore_item">
-
-                  <a href="#">
-                    <img src="images/Desktop/shreyas-chronos.png" alt="For Fitness" loading="lazy">
-                    <div class="collection">
-                      <span class="collection_title">For Fitness</span>
-                      <span class="link">View All <span class="right-arrow">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-                            <path id="Path_337386" data-name="Path 337386"
-                              d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                              transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-                          </svg>
-                        </span></span>
-                    </div>
-                  </a>
+                    <a href="#">
+                      <img src="images/Desktop/shreyas-chronos.png" alt="For Fitness" loading="lazy">
+                      <div class="collection">
+                        <span class="collection_title">For Fitness</span>
+                        <span class="link">View All <span class="right-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path id="Path_337386" data-name="Path 337386"
+                                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+                            </svg>
+                          </span></span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="Box" data-index="1" style="width: 240.4px;">
-                <div class="explore_item">
-                  <a href="#">
-                    <img src="./images/Desktop/Party_Animal_4.png" alt="For Parties" loading="lazy">
-                    <div class="collection">
-                      <span class="collection_title">For Parties</span>
-                      <span class="link">View All <span class="right-arrow">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-                            <path id="Path_337386" data-name="Path 337386"
-                              d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                              transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-                          </svg>
-                        </span></span>
-                    </div>
-                  </a>
+                <div class="Box" data-index="1" style="width: 240.4px;">
+                  <div class="explore_item">
+                    <a href="#">
+                      <img src="./images/Desktop/Party_Animal_4.png" alt="For Parties" loading="lazy">
+                      <div class="collection">
+                        <span class="collection_title">For Parties</span>
+                        <span class="link">View All <span class="right-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path id="Path_337386" data-name="Path 337386"
+                                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+                            </svg>
+                          </span></span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="Box" data-index="2" style="width: 240.4px;">
-                <div class="explore_item">
+                <div class="Box" data-index="2" style="width: 240.4px;">
+                  <div class="explore_item">
 
-                  <a href="#">
-                    <img src="./images/Desktop/Workaholic_2.png" alt="For Work" loading="lazy">
-                    <div class="collection">
-                      <span class="collection_title">For Work</span>
-                      <span class="link">View All <span class="right-arrow">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-                            <path id="Path_337386" data-name="Path 337386"
-                              d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                              transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-                          </svg>
-                        </span></span>
-                    </div>
-                  </a>
+                    <a href="#">
+                      <img src="./images/Desktop/Workaholic_2.png" alt="For Work" loading="lazy">
+                      <div class="collection">
+                        <span class="collection_title">For Work</span>
+                        <span class="link">View All <span class="right-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path id="Path_337386" data-name="Path 337386"
+                                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+                            </svg>
+                          </span></span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="Box" data-index="3" style="width: 240.4px;">
-                <div class="explore_item">
+                <div class="Box" data-index="3" style="width: 240.4px;">
+                  <div class="explore_item">
 
-                  <a href="#">
-                    <img src="./images/Desktop/Entertainment_2.png" alt="For Entertainment" loading="lazy">
-                    <div class="collection">
-                      <span class="collection_title">For Entertainment</span>
-                      <span class="link">View All <span class="right-arrow">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-                            <path id="Path_337386" data-name="Path 337386"
-                              d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                              transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-                          </svg>
-                        </span></span>
-                    </div>
-                  </a>
+                    <a href="#">
+                      <img src="./images/Desktop/Entertainment_2.png" alt="For Entertainment" loading="lazy">
+                      <div class="collection">
+                        <span class="collection_title">For Entertainment</span>
+                        <span class="link">View All <span class="right-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path id="Path_337386" data-name="Path 337386"
+                                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+                            </svg>
+                          </span></span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="Box" data-index="4" style="width: 240.4px;">
-                <div class="explore_item">
+                <div class="Box" data-index="4" style="width: 240.4px;">
+                  <div class="explore_item">
 
-                  <a href="#">
-                    <img src="./images/Desktop/Audiophile_5.png" alt="For Audiophiles" loading="lazy">
-                    <div class="collection">
-                      <span class="collection_title">For Audiophiles</span>
-                      <span class="link">View All <span class="right-arrow">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-                            <path id="Path_337386" data-name="Path 337386"
-                              d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                              transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-                          </svg>
-                        </span></span>
-                    </div>
-                  </a>
+                    <a href="#">
+                      <img src="./images/Desktop/Audiophile_5.png" alt="For Audiophiles" loading="lazy">
+                      <div class="collection">
+                        <span class="collection_title">For Audiophiles</span>
+                        <span class="link">View All <span class="right-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path id="Path_337386" data-name="Path 337386"
+                                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+                            </svg>
+                          </span></span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="heading">
+            <p class="h2-heading1">Best Of<span>&nbsp;<b>boAt</b>
+                <sale></sale>
+              </span>
+            </p>
+            <b class="view-all">View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                <path id="Path_337386" data-name="Path 337386"
+                  d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
+                  transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
+              </svg>
+            </b>
+          </div>
+          <div>
+            <button id="soundbar">Soundbars</button>
+            <button id="watche">Top Watches</button>
+            <button id="accessorie">Accessories</button>
+          </div>
+          <div id="soundbars" class="d-soundbars" style="display: flex;">
+          </div>
+
+          <div id="top-watches" class="d-top-watches" style="display: none;">
+          </div>
+
+          <div id="accessories" class="d-accessories" style="display: none;">
+          </div>
+          <script>
+            const soundbar = document.getElementById('soundbar');
+            const watche = document.getElementById('watche');
+            const accessorie = document.getElementById('accessorie');
+
+            soundbar.addEventListener('click', () => {
+              const soundbars = document.getElementById('soundbars');
+              const topwatches = document.getElementById('top-watches');
+              const accessories = document.getElementById('accessories');
+
+              if (soundbars.style.display === 'none') {
+                soundbars.style.display = 'flex';
+                topwatches.style.display = 'none';
+                accessories.style.display = 'none';
+              }
+
+            });
+            watche.addEventListener('click', () => {
+              const soundbars = document.getElementById('soundbars');
+              const topwatches = document.getElementById('top-watches');
+              const accessories = document.getElementById('accessories');
+
+              if (topwatches.style.display === 'none') {
+                soundbars.style.display = 'none';
+                topwatches.style.display = 'flex';
+                accessories.style.display = 'none';
+              }
+
+            });
+            accessorie.addEventListener('click', () => {
+              const soundbars = document.getElementById('soundbars');
+              const topwatches = document.getElementById('top-watches');
+              const accessories = document.getElementById('accessories');
+
+              if (accessories.style.display === 'none') {
+                soundbars.style.display = 'none';
+                topwatches.style.display = 'none';
+                accessories.style.display = 'flex';
+              }
+
+            });
+          </script>
         </div>
 
-        <div class="heading">
-          <p class="h2-heading1">Best Of<span>&nbsp;<b>boAt</b>
-              <sale></sale>
-            </span>
-          </p>
-          <b class="view-all">View All
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-              <path id="Path_337386" data-name="Path 337386"
-                d="M8.159,2.693a6.7,6.7,0,0,0,2.7-.551A7.172,7.172,0,0,0,13.095.625,7.133,7.133,0,0,0,14.608-1.6a6.735,6.735,0,0,0,.548-2.706,6.7,6.7,0,0,0-.551-2.7A7.216,7.216,0,0,0,13.087-9.25a7.041,7.041,0,0,0-2.234-1.513,6.781,6.781,0,0,0-2.7-.544,6.755,6.755,0,0,0-2.7.544A7.1,7.1,0,0,0,3.22-9.25,7.134,7.134,0,0,0,1.7-7.012a6.742,6.742,0,0,0-.548,2.7A6.7,6.7,0,0,0,1.706-1.6,7.184,7.184,0,0,0,3.223.625a7.184,7.184,0,0,0,2.23,1.517A6.7,6.7,0,0,0,8.159,2.693Zm0-1.283A5.609,5.609,0,0,1,5.932.968,5.741,5.741,0,0,1,4.109-.261,5.692,5.692,0,0,1,2.885-2.084a5.648,5.648,0,0,1-.44-2.226,5.648,5.648,0,0,1,.44-2.226A5.692,5.692,0,0,1,4.109-8.36,5.7,5.7,0,0,1,5.929-9.585a5.622,5.622,0,0,1,2.223-.44,5.675,5.675,0,0,1,2.23.44A5.681,5.681,0,0,1,12.208-8.36a5.692,5.692,0,0,1,1.225,1.823,5.648,5.648,0,0,1,.44,2.226,5.648,5.648,0,0,1-.44,2.226A5.692,5.692,0,0,1,12.208-.261,5.741,5.741,0,0,1,10.385.968,5.609,5.609,0,0,1,8.159,1.411Zm3.5-5.735a.637.637,0,0,0-.209-.44l-2.306-2.3a.541.541,0,0,0-.389-.144.5.5,0,0,0-.371.151.507.507,0,0,0-.148.367.526.526,0,0,0,.166.4l.843.821.793.648L8.62-4.887H5.183a.528.528,0,0,0-.4.162.557.557,0,0,0-.155.4.553.553,0,0,0,.155.4.535.535,0,0,0,.4.159H8.62l1.419-.058-.793.656L8.4-2.35a.5.5,0,0,0-.166.389.528.528,0,0,0,.148.378.491.491,0,0,0,.371.155.529.529,0,0,0,.389-.159l2.306-2.291A.627.627,0,0,0,11.661-4.325Z"
-                transform="translate(-1.155 11.307)" fill="#2f5b96"></path>
-            </svg>
-          </b>
+      </div>
+
+      <div id="cart">
+        <div class="taste-header">
+
         </div>
-        <div>
-          <button id="soundbar">Soundbars</button>
-          <button id="watche">Top Watches</button>
-          <button id="accessorie">Accessories</button>
+      </div>
+
+    </div>
+
+
+    <div class="heading d-heading">
+      <p class="h2-heading1">Join the<span>&nbsp;<b>Tribe</b>
+          <sale></sale>
+        </span>
+      </p>
+    </div>
+
+    <div class="join-tribe">
+      <div class="video-container">
+        <video src="./images/Airpods_100.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted>
+        </video>
+        <img loading="lazy" alt="" src="./images/Airpods_100.jpg">
+        <span class="video_title">Airdopes 100</span>
+        <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
+          <p class="offer">57% off</p>
         </div>
-        <div id="soundbars" class="d-soundbars" style="display: flex;">
+      </div>
+      <div class="video-container">
+        <video src="./images/wave-sigma.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted>
+        </video>
+        <img loading="lazy" alt="" src="./images/WaveSigma.jpg">
+        <span class="video_title">Airdopes 100</span>
+        <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
+          <p class="offer">57% off</p>
         </div>
-
-        <div id="top-watches" class="d-top-watches" style="display: none;">
+      </div>
+      <div class="video-container">
+        <video src="./images/wave-glory-pro.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips"
+          muted>
+        </video>
+        <img loading="lazy" alt="" src="./images/WaveGloryPro.jpg">
+        <span class="video_title">Airdopes 100</span>
+        <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
+          <p class="offer">57% off</p>
         </div>
-
-        <div id="accessories" class="d-accessories" style="display: none;">
+      </div>
+      <div class="video-container">
+        <video src="./images/stone-majestic-riverdale-rockeer.mp4" type="video/mp4" autoplay muted loop preload="auto"
+          class="clips" muted>
+        </video>
+        <img loading="lazy" alt="" src="./images/StoneMajestic.jpg">
+        <span class="video_title">Airdopes 100</span>
+        <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
+          <p class="offer">57% off</p>
         </div>
-        <script>
-          const soundbar = document.getElementById('soundbar');
-          const watche = document.getElementById('watche');
-          const accessorie = document.getElementById('accessorie');
-
-          soundbar.addEventListener('click', () => {
-            const soundbars = document.getElementById('soundbars');
-            const topwatches = document.getElementById('top-watches');
-            const accessories = document.getElementById('accessories');
-
-            if (soundbars.style.display === 'none') {
-              soundbars.style.display = 'flex';
-              topwatches.style.display = 'none';
-              accessories.style.display = 'none';
-            }
-
-          });
-          watche.addEventListener('click', () => {
-            const soundbars = document.getElementById('soundbars');
-            const topwatches = document.getElementById('top-watches');
-            const accessories = document.getElementById('accessories');
-
-            if (topwatches.style.display === 'none') {
-              soundbars.style.display = 'none';
-              topwatches.style.display = 'flex';
-              accessories.style.display = 'none';
-            }
-
-          });
-          accessorie.addEventListener('click', () => {
-            const soundbars = document.getElementById('soundbars');
-            const topwatches = document.getElementById('top-watches');
-            const accessories = document.getElementById('accessories');
-
-            if (accessories.style.display === 'none') {
-              soundbars.style.display = 'none';
-              topwatches.style.display = 'none';
-              accessories.style.display = 'flex';
-            }
-
-          });
-        </script>
       </div>
-
-    </div>
-
-    <div id="cart">
-      <div class="taste-header">
-
+      <div class="video-container">
+        <video src="./images/primia-celestial.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips"
+          muted width="238px" height="430px">
+        </video>
+        <img loading="lazy" alt="" src="./images/primia-celestial.jpg">
+        <span class="video_title">Airdopes 100</span>
+        <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
+          <p class="offer">57% off</p>
+        </div>
       </div>
     </div>
 
-  </div>
-  </div>
-
-  <div class="heading d-heading">
-    <p class="h2-heading1">Join the<span>&nbsp;<b>Tribe</b>
-        <sale></sale>
-      </span>
-    </p>
-  </div>
-
-  <div class="join-tribe">
-    <div class="video-container">
-      <video src="./images/Airpods_100.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted>
-      </video>
-      <img loading="lazy" alt="" src="./images/Airpods_100.jpg">
-      <span class="video_title">Airdopes 100</span>
-      <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
-        <p class="offer">57% off</p>
-      </div>
-    </div>
-    <div class="video-container">
-      <video src="./images/wave-sigma.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted>
-      </video>
-      <img loading="lazy" alt="" src="./images/WaveSigma.jpg">
-      <span class="video_title">Airdopes 100</span>
-      <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
-        <p class="offer">57% off</p>
-      </div>
-    </div>
-    <div class="video-container">
-      <video src="./images/wave-glory-pro.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted>
-      </video>
-      <img loading="lazy" alt="" src="./images/WaveGloryPro.jpg">
-      <span class="video_title">Airdopes 100</span>
-      <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
-        <p class="offer">57% off</p>
-      </div>
-    </div>
-    <div class="video-container">
-      <video src="./images/stone-majestic-riverdale-rockeer.mp4" type="video/mp4" autoplay muted loop preload="auto"class="clips" muted>
-      </video>
-      <img loading="lazy" alt="" src="./images/StoneMajestic.jpg">
-      <span class="video_title">Airdopes 100</span>
-      <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
-        <p class="offer">57% off</p>
-      </div>
-    </div>
-    <div class="video-container">
-      <video src="./images/primia-celestial.mp4" type="video/mp4" autoplay muted loop preload="auto" class="clips" muted
-        width="238px" height="430px">
-      </video>
-      <img loading="lazy" alt="" src="./images/primia-celestial.jpg">
-      <span class="video_title">Airdopes 100</span>
-      <div class="price"><span class="sellprice">₹ 1,499</span><span class="originalprice">₹ 3,490</span>
-        <p class="offer">57% off</p>
-      </div>
-    </div>
   </div>
 
   <footer>
@@ -1864,7 +1973,6 @@
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Bulk Orders</a></li>
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">FAQs</a></li>
         <li class="footer-nav-item"><a href="#" class="footer-nav-link">Why Buy Direct</a></li>
-
       </ul>
 
       <ul class="footer-nav-list" style="margin-left: 30px;">
