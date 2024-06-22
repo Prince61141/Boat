@@ -39,8 +39,18 @@ function showUserDetails(user) {
 `
 document.getElementById('email').value = `${user.email}`
 
-}
+const userId = user.uid;
 
+                const storageRef = firebase.storage().ref('users/'+userId+'/profile');
+
+                    storageRef.getDownloadURL().then(function(url) {
+                        
+                        const img = document.getElementById('profile-photo');
+                        img.src = url;
+                        
+                    });
+
+}
 
 function checkAuthState() {
     firebase.auth().onAuthStateChanged(user => {
