@@ -587,3 +587,25 @@ for (let i = 0; i < accordian.length; i++) {
   });
 }
 
+/* Error page */
+
+const links = document.querySelectorAll('a');
+
+links.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const url = link.href;
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('HEAD', url, true);
+    xhr.onload = function() {
+      if (xhr.status === 404) {
+        window.location.href = 'error.html';
+      }
+    };
+    xhr.onerror = function() {
+      window.location.href = 'error.html';
+    };
+    xhr.send();
+  });
+});
+
