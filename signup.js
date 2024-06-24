@@ -22,37 +22,27 @@ const db = getDatabase(app);
 
 console.log(app);
 
+document.getElementById("register").addEventListener("click", function () {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
 
-// //----- New Registration code start	  
-// document.getElementById("register").addEventListener("click", function () {
-//     var email = document.getElementById("email").value;
-//     var password = document.getElementById("password").value;
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            alert("Registration successfully!!");
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            console.log(errorMessage);
+            alert(error);
+        });
+});
 
-//     //For new registration
-//     set(ref(db, 'users/' + document.getElementById("username").value),
-//             {
-//                 username: document.getElementById("username").value,
-//                 email: document.getElementById("email").value,
-//                 password: document.getElementById("password").value
-//             });
-
-//     createUserWithEmailAndPassword(auth, email, password)
-//         .then((userCredential) => {
-//             // Signed in 
-//             const user = userCredential.user;
-//             console.log(user);
-//             alert("Registration successfully!!");
-//             // ...
-//         })
-//         .catch((error) => {
-//             const errorCode = error.code;
-//             const errorMessage = error.message;
-//             // ..
-//             console.log(errorMessage);
-//             alert(error);
-//         });
-// });
-// //----- End
 
 //----- Logout code start
 document.getElementById("logout").addEventListener("click", function () {
